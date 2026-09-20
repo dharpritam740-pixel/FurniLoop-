@@ -12,6 +12,7 @@ header{background:#222;color:white;text-align:center;padding:20px}
 .price{font-size:22px;font-weight:bold}
 button{width:100%;padding:12px;margin-top:8px;border:0;border-radius:7px;color:white;background:#222}
 .whatsapp{background:#25D366}
+.sold{background:#777}
 input,select{width:100%;padding:12px;margin:6px 0;box-sizing:border-box}
 </style>
 </head>
@@ -27,43 +28,85 @@ input,select{width:100%;padding:12px;margin:6px 0;box-sizing:border-box}
 
 <input id="search" placeholder="Search furniture...">
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80">
-<h2>Second-hand Sofa</h2>
-<p class="price">₹8,500</p>
-<p>📍 Agartala, Tripura</p>
-<p>Condition: Good</p>
-<a href="tel:+916909981886"><button>📞 Call Now</button></a>
-<a href="https://wa.me/916909981886" target="_blank">
-<button class="whatsapp">💬 WhatsApp</button>
-</a>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80">
-<h2>Wooden Bed</h2>
-<p class="price">₹6,000</p>
-<p>📍 Tripura</p>
-<p>Condition: Clean Used</p>
-<a href="tel:+916909981886"><button>📞 Call Now</button></a>
-<a href="https://wa.me/916909981886" target="_blank">
-<button class="whatsapp">💬 WhatsApp</button>
-</a>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=800&q=80">
-<h2>Dining Table</h2>
-<p class="price">₹4,500</p>
-<p>📍 Tripura</p>
-<p>Condition: Good</p>
-<a href="tel:+916909981886"><button>📞 Call Now</button></a>
-<a href="https://wa.me/916909981886" target="_blank">
-<button class="whatsapp">💬 WhatsApp</button>
-</a>
-</div>
+<div id="products"></div>
 
 </div>
+
+<script>
+
+const phone="916909981886";
+
+const products=[
+
+["Sofa Set","₹8,500","Agartala","Good","https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80"],
+
+["Double Bed","₹9,000","Agartala","Good","https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80"],
+
+["Dining Table","₹4,500","Tripura","Good","https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=800&q=80"],
+
+["Wooden Chair","₹1,200","Tripura","Good","https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=80"],
+
+["Almirah","₹5,500","Agartala","Used","https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80"],
+
+["Dressing Table","₹4,000","Tripura","Good","https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80"],
+
+["Bookshelf","₹2,500","Agartala","Good","https://images.unsplash.com/photo-1594620302200-9a762244a156?auto=format&fit=crop&w=800&q=80"],
+
+["Single Bed","₹5,000","Tripura","Clean Used","https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80"],
+
+["Wooden Table","₹3,000","Agartala","Good","https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&w=800&q=80"],
+
+["Cabinet","₹3,500","Tripura","Good","https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=800&q=80"]
+
+];
+
+function showProducts(){
+
+let search=document.getElementById("search").value.toLowerCase();
+
+let html="";
+
+products
+.filter(p=>p[0].toLowerCase().includes(search))
+.forEach(p=>{
+
+html+=`
+<div class="card">
+
+<img src="${p[4]}">
+
+<h2>${p[0]}</h2>
+
+<p class="price">${p[1]}</p>
+
+<p>📍 ${p[2]}</p>
+
+<p>Condition: ${p[3]}</p>
+
+<p>🟢 Available</p>
+
+<a href="tel:+${phone}">
+<button>📞 Call Now</button>
+</a>
+
+<a href="https://wa.me/${phone}" target="_blank">
+<button class="whatsapp">💬 WhatsApp</button>
+</a>
+
+</div>
+`;
+
+});
+
+document.getElementById("products").innerHTML=html;
+
+}
+
+document.getElementById("search").addEventListener("input",showProducts);
+
+showProducts();
+
+</script>
 
 </body>
 </html>
