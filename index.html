@@ -3,111 +3,170 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FurniLoop - Second Hand Furniture</title>
+<title>FurniLoop - Second-Hand Furniture</title>
 
 <style>
-*{box-sizing:border-box}
 body{
-  margin:0;
   font-family:Arial,sans-serif;
+  margin:0;
   background:#f5f5f5;
   color:#222;
 }
-header{
-  background:#5b341c;
-  color:white;
-  padding:18px;
-  text-align:center;
-}
-header h1{margin:0;font-size:28px}
-header p{margin:5px 0 0}
 
-.container{
-  max-width:700px;
-  margin:auto;
-  padding:15px;
+header{
+  background:#6b4226;
+  color:white;
+  text-align:center;
+  padding:20px 10px;
 }
+
+h1{margin:0 0 6px;}
+.subtitle{font-size:14px;}
 
 .search{
-  width:100%;
-  padding:14px;
-  border:1px solid #ddd;
+  width:90%;
+  max-width:500px;
+  margin:18px auto;
+  display:block;
+  padding:13px;
+  border:1px solid #ccc;
   border-radius:10px;
-  margin-bottom:12px;
   font-size:16px;
 }
 
 .categories{
-  display:flex;
-  gap:8px;
-  overflow-x:auto;
-  margin-bottom:15px;
+  text-align:center;
+  margin:10px;
 }
+
 .categories button{
+  margin:4px;
+  padding:9px 14px;
   border:0;
-  background:white;
-  padding:10px 14px;
   border-radius:20px;
-  white-space:nowrap;
-  box-shadow:0 2px 6px #ddd;
+  background:#ddd;
+  cursor:pointer;
+}
+
+.container{
+  width:94%;
+  max-width:1000px;
+  margin:auto;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:15px;
 }
 
 .card{
   background:white;
-  border-radius:14px;
-  margin-bottom:18px;
+  border-radius:12px;
   overflow:hidden;
-  box-shadow:0 2px 10px #ddd;
+  box-shadow:0 2px 8px #ccc;
 }
 
 .card img{
   width:100%;
-  height:230px;
+  height:190px;
   object-fit:cover;
 }
 
-.info{padding:15px}
-.info h2{margin:0 0 8px}
+.card-content{
+  padding:14px;
+}
+
 .price{
-  font-size:22px;
+  font-size:20px;
   font-weight:bold;
-  color:#16803c;
+  color:#087f23;
 }
-.details{
-  line-height:1.7;
-  margin:8px 0;
+
+.info{
+  font-size:14px;
+  line-height:1.6;
 }
-.available{
+
+.status{
   color:green;
   font-weight:bold;
 }
-.sold{
-  color:red;
-  font-weight:bold;
-}
 
-.buttons{
-  display:flex;
-  gap:8px;
-  margin-top:12px;
-}
-.buttons a,.buttons button{
-  flex:1;
-  padding:12px;
+.card button{
+  width:100%;
+  padding:11px;
+  margin-top:7px;
   border:0;
-  border-radius:8px;
-  text-align:center;
-  text-decoration:none;
-  font-weight:bold;
+  border-radius:7px;
   cursor:pointer;
 }
-.call{background:#198754;color:white}
-.whatsapp{background:#25D366;color:white}
-.interest{background:#ffe0e0;color:#c00}
 
-.empty{
+.call{
+  background:#25a244;
+  color:white;
+}
+
+.whatsapp{
+  background:#20c76a;
+  color:white;
+}
+
+.interested{
+  background:#ff9800;
+  color:white;
+}
+
+.review-box{
+  background:white;
+  margin:30px auto;
+  padding:20px;
+  width:90%;
+  max-width:650px;
+  border-radius:12px;
+  box-shadow:0 2px 8px #ccc;
+}
+
+.review-box input,
+.review-box select,
+.review-box textarea{
+  width:100%;
+  box-sizing:border-box;
+  padding:12px;
+  margin:7px 0;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:15px;
+}
+
+.review-box textarea{
+  height:100px;
+  resize:none;
+}
+
+.review-box button{
+  width:100%;
+  padding:12px;
+  background:#6b4226;
+  color:white;
+  border:0;
+  border-radius:8px;
+  font-size:16px;
+}
+
+.review-item{
+  margin-top:15px;
+  padding:12px;
+  background:#f5f5f5;
+  border-radius:8px;
+}
+
+footer{
   text-align:center;
-  padding:30px;
+  padding:20px;
+  background:#333;
+  color:white;
+  margin-top:30px;
 }
 </style>
 </head>
@@ -115,38 +174,93 @@ header p{margin:5px 0 0}
 <body>
 
 <header>
-  <h1>🪑 FurniLoop</h1>
-  <p>Second-Hand Furniture in Tripura</p>
+  <h1>FurniLoop</h1>
+  <div class="subtitle">Second-Hand Furniture in Tripura</div>
 </header>
 
-<div class="container">
-
 <input
-  id="search"
   class="search"
+  id="search"
   type="text"
-  placeholder="🔍 Search furniture..."
+  placeholder="🔍 Search Furniture..."
   onkeyup="showProducts()"
 >
 
 <div class="categories">
-  <button onclick="filterCategory('All')">All</button>
-  <button onclick="filterCategory('Sofa')">🛋️ Sofa</button>
-  <button onclick="filterCategory('Bed')">🛏️ Bed</button>
-  <button onclick="filterCategory('Chair')">🪑 Chair</button>
-  <button onclick="filterCategory('Table')">🪵 Table</button>
-  <button onclick="filterCategory('Almirah')">🚪 Almirah</button>
+  <button onclick="setCategory('All')">All</button>
+  <button onclick="setCategory('Sofa')">Sofa</button>
+  <button onclick="setCategory('Bed')">Bed</button>
+  <button onclick="setCategory('Chair')">Chair</button>
+  <button onclick="setCategory('Table')">Table</button>
+  <button onclick="setCategory('Almirah')">Almirah</button>
 </div>
 
-<div id="products"></div>
+<div class="container">
+  <div class="products" id="products"></div>
+</div>
+
+<!-- CUSTOMER REVIEWS -->
+
+<div class="review-box">
+
+  <h2>⭐ Customer Reviews</h2>
+
+  <input
+    id="reviewName"
+    type="text"
+    placeholder="Your Name"
+  >
+
+  <select id="reviewRating">
+    <option value="5">⭐⭐⭐⭐⭐</option>
+    <option value="4">⭐⭐⭐⭐</option>
+    <option value="3">⭐⭐⭐</option>
+    <option value="2">⭐⭐</option>
+    <option value="1">⭐</option>
+  </select>
+
+  <textarea
+    id="reviewText"
+    placeholder="Write your review"
+  ></textarea>
+
+  <button onclick="submitReview()">
+    Submit Review
+  </button>
+
+  <div id="reviewList"></div>
 
 </div>
+
+<footer>
+  © 2026 FurniLoop | Tripura
+</footer>
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
+const SUPABASE_URL =
+"https://xrtbizswrxbccyqmzetw.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_iQVUPQExXfCCm4NSxDZ-Dg_AOhTpVTw";
+
+const supabaseClient =
+supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+// PHONE NUMBER
+
 const phone = "916909988186";
 
-let selectedCategory = "All";
+
+// PRODUCTS
 
 const products = [
 
@@ -156,9 +270,8 @@ category:"Sofa",
 price:"₹8,500",
 location:"Agartala, Tripura",
 condition:"Good",
-status:"Available",
-delivery:"Available",
-image:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc"
+image:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc",
+delivery:"Delivery Available"
 },
 
 {
@@ -167,9 +280,8 @@ category:"Bed",
 price:"₹9,000",
 location:"Agartala, Tripura",
 condition:"Good",
-status:"Available",
-delivery:"Available",
-image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
+image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
+delivery:"Delivery Available"
 },
 
 {
@@ -178,9 +290,8 @@ category:"Table",
 price:"₹4,500",
 location:"Tripura",
 condition:"Good",
-status:"Available",
-delivery:"Available",
-image:"https://images.unsplash.com/photo-1617098900591-3f90928e8c54"
+image:"https://images.unsplash.com/photo-1617104678098-de229db51175",
+delivery:"Delivery Available"
 },
 
 {
@@ -189,9 +300,8 @@ category:"Chair",
 price:"₹1,200",
 location:"Tripura",
 condition:"Good",
-status:"Available",
-delivery:"Available",
-image:"https://images.unsplash.com/photo-1503602642458-232111445657"
+image:"https://images.unsplash.com/photo-1503602642458-232111445657",
+delivery:"Delivery Available"
 },
 
 {
@@ -200,9 +310,8 @@ category:"Almirah",
 price:"₹5,500",
 location:"Agartala, Tripura",
 condition:"Used",
-status:"Available",
-delivery:"Available",
-image:"https://images.unsplash.com/photo-1558997519-83ea9252edf8"
+image:"https://images.unsplash.com/photo-1595428774223-ef52624120d2",
+delivery:"Delivery Available"
 },
 
 {
@@ -211,9 +320,8 @@ category:"Table",
 price:"₹4,000",
 location:"Tripura",
 condition:"Good",
-status:"Available",
-delivery:"Available",
-image:"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6"
+image:"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6",
+delivery:"Delivery Available"
 },
 
 {
@@ -222,9 +330,8 @@ category:"Table",
 price:"₹2,500",
 location:"Agartala, Tripura",
 condition:"Good",
-status:"Available",
-delivery:"Available",
-image:"https://images.unsplash.com/photo-1594620302200-9a762244a156"
+image:"https://images.unsplash.com/photo-1594620302200-9a762244a156",
+delivery:"Delivery Available"
 },
 
 {
@@ -233,9 +340,8 @@ category:"Bed",
 price:"₹5,000",
 location:"Tripura",
 condition:"Clean Used",
-status:"Available",
-delivery:"Available",
-image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
+image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
+delivery:"Delivery Available"
 },
 
 {
@@ -244,9 +350,8 @@ category:"Table",
 price:"₹3,000",
 location:"Agartala, Tripura",
 condition:"Good",
-status:"Available",
-delivery:"Available",
-image:"https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc"
+image:"https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc",
+delivery:"Delivery Available"
 },
 
 {
@@ -255,123 +360,81 @@ category:"Almirah",
 price:"₹3,500",
 location:"Tripura",
 condition:"Good",
-status:"Available",
-delivery:"Available",
-image:"https://images.unsplash.com/photo-1595428774223-ef52624120d2"
+image:"https://images.unsplash.com/photo-1595428774223-ef52624120d2",
+delivery:"Delivery Available"
 }
 
 ];
 
+let selectedCategory = "All";
+
+
+// SHOW PRODUCTS
+
 function showProducts(){
 
-const search =
-document.getElementById("search").value.toLowerCase();
+  const search =
+  document.getElementById("search")
+  .value
+  .toLowerCase();
 
-const box =
-document.getElementById("products");
+  const container =
+  document.getElementById("products");
 
-let html="";
+  container.innerHTML = "";
 
-const filtered = products.filter(p => {
+  products
+  .filter(item => {
 
-const matchSearch =
-p.name.toLowerCase().includes(search);
+    const categoryMatch =
+    selectedCategory === "All" ||
+    item.category === selectedCategory;
 
-const matchCategory =
-selectedCategory === "All" ||
-p.category === selectedCategory;
+    const searchMatch =
+    item.name.toLowerCase().includes(search);
 
-return matchSearch && matchCategory;
+    return categoryMatch && searchMatch;
 
-});
+  })
+  .forEach(item => {
 
-if(filtered.length===0){
-box.innerHTML =
-'<div class="empty">😔 Furniture not found</div>';
-return;
-}
+    const card =
+    document.createElement("div");
 
-filtered.forEach((p,index)=>{
+    card.className = "card";
 
-const statusClass =
-p.status==="Available" ? "available" : "sold";
+    card.innerHTML = `
 
-html += `
+      <img src="${item.image}" alt="${item.name}">
 
-<div class="card">
+      <div class="card-content">
 
-<img src="${p.image}" alt="${p.name}">
+        <h2>${item.name}</h2>
 
-<div class="info">
+        <div class="price">
+          ${item.price}
+        </div>
 
-<h2>${p.name}</h2>
+        <div class="info">
+          📍 ${item.location}<br>
+          🪑 Condition: ${item.condition}<br>
+          🚚 ${item.delivery}<br>
+          <span class="status">
+          ● Available
+          </span>
+        </div>
 
-<div class="price">${p.price}</div>
+        <button
+          class="call"
+          onclick="callNow()">
+          📞 Call
+        </button>
 
-<div class="details">
+        <button
+          class="whatsapp"
+          onclick="whatsappNow('${item.name}')">
+          💬 WhatsApp
+        </button>
 
-📍 <b>Location:</b> ${p.location}<br>
-
-🛠️ <b>Condition:</b> ${p.condition}<br>
-
-<span class="${statusClass}">
-${p.status==="Available" ? "🟢" : "🔴"} ${p.status}
-</span><br>
-
-🚚 <b>Delivery:</b> ${p.delivery}
-
-</div>
-
-<div class="buttons">
-
-<a class="call"
-href="tel:+${phone}">
-📞 Call
-</a>
-
-<a class="whatsapp"
-href="https://wa.me/${phone}?text=Hello%20FurniLoop,%20I%20am%20interested%20in%20${encodeURIComponent(p.name)}">
-💬 WhatsApp
-</a>
-
-<button class="interest"
-onclick="interested('${p.name}')">
-❤️ Interested
-</button>
-
-</div>
-
-</div>
-</div>
-
-`;
-
-});
-
-box.innerHTML=html;
-
-}
-
-function filterCategory(category){
-
-selectedCategory=category;
-showProducts();
-
-}
-
-function interested(name){
-
-alert(
-"❤️ Thank you! You are interested in " +
-name +
-". Please contact us by Call or WhatsApp."
-);
-
-}
-
-showProducts();
-
-</script>
-
-</body>
-</html>
+        <button
+          class
