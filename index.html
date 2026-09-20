@@ -1,32 +1,142 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FurniLoop</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FurniLoop - Second Hand Furniture</title>
+
 <style>
-body{font-family:Arial;margin:0;background:#f5f5f5}
-header{background:#222;color:white;text-align:center;padding:20px}
-.container{padding:15px;max-width:700px;margin:auto}
-.card{background:white;margin:15px 0;padding:15px;border-radius:12px;box-shadow:0 2px 8px #ccc}
-.card img{width:100%;height:200px;object-fit:cover;border-radius:8px}
-.price{font-size:22px;font-weight:bold}
-button{width:100%;padding:12px;margin-top:8px;border:0;border-radius:7px;color:white;background:#222}
-.whatsapp{background:#25D366}
-.sold{background:#777}
-input,select{width:100%;padding:12px;margin:6px 0;box-sizing:border-box}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f5f5f5;
+  color:#222;
+}
+header{
+  background:#5b341c;
+  color:white;
+  padding:18px;
+  text-align:center;
+}
+header h1{margin:0;font-size:28px}
+header p{margin:5px 0 0}
+
+.container{
+  max-width:700px;
+  margin:auto;
+  padding:15px;
+}
+
+.search{
+  width:100%;
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  margin-bottom:12px;
+  font-size:16px;
+}
+
+.categories{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  margin-bottom:15px;
+}
+.categories button{
+  border:0;
+  background:white;
+  padding:10px 14px;
+  border-radius:20px;
+  white-space:nowrap;
+  box-shadow:0 2px 6px #ddd;
+}
+
+.card{
+  background:white;
+  border-radius:14px;
+  margin-bottom:18px;
+  overflow:hidden;
+  box-shadow:0 2px 10px #ddd;
+}
+
+.card img{
+  width:100%;
+  height:230px;
+  object-fit:cover;
+}
+
+.info{padding:15px}
+.info h2{margin:0 0 8px}
+.price{
+  font-size:22px;
+  font-weight:bold;
+  color:#16803c;
+}
+.details{
+  line-height:1.7;
+  margin:8px 0;
+}
+.available{
+  color:green;
+  font-weight:bold;
+}
+.sold{
+  color:red;
+  font-weight:bold;
+}
+
+.buttons{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+.buttons a,.buttons button{
+  flex:1;
+  padding:12px;
+  border:0;
+  border-radius:8px;
+  text-align:center;
+  text-decoration:none;
+  font-weight:bold;
+  cursor:pointer;
+}
+.call{background:#198754;color:white}
+.whatsapp{background:#25D366;color:white}
+.interest{background:#ffe0e0;color:#c00}
+
+.empty{
+  text-align:center;
+  padding:30px;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>FurniLoop</h1>
-<p>Second-hand Furniture</p>
+  <h1>🪑 FurniLoop</h1>
+  <p>Second-Hand Furniture in Tripura</p>
 </header>
 
 <div class="container">
 
-<input id="search" placeholder="Search furniture...">
+<input
+  id="search"
+  class="search"
+  type="text"
+  placeholder="🔍 Search furniture..."
+  onkeyup="showProducts()"
+>
+
+<div class="categories">
+  <button onclick="filterCategory('All')">All</button>
+  <button onclick="filterCategory('Sofa')">🛋️ Sofa</button>
+  <button onclick="filterCategory('Bed')">🛏️ Bed</button>
+  <button onclick="filterCategory('Chair')">🪑 Chair</button>
+  <button onclick="filterCategory('Table')">🪵 Table</button>
+  <button onclick="filterCategory('Almirah')">🚪 Almirah</button>
+</div>
 
 <div id="products"></div>
 
@@ -34,75 +144,230 @@ input,select{width:100%;padding:12px;margin:6px 0;box-sizing:border-box}
 
 <script>
 
-const phone="916909988186";
+const phone = "916909988186";
 
-const products=[
+let selectedCategory = "All";
 
-["Sofa Set","₹8,500","Agartala","Good","https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80"],
+const products = [
 
-["Double Bed","₹9,000","Agartala","Good","https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80"],
+{
+name:"Sofa Set",
+category:"Sofa",
+price:"₹8,500",
+location:"Agartala, Tripura",
+condition:"Good",
+status:"Available",
+delivery:"Available",
+image:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc"
+},
 
-["Dining Table","₹4,500","Tripura","Good","https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=800&q=80"],
+{
+name:"Double Bed",
+category:"Bed",
+price:"₹9,000",
+location:"Agartala, Tripura",
+condition:"Good",
+status:"Available",
+delivery:"Available",
+image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
+},
 
-["Wooden Chair","₹1,200","Tripura","Good","https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=80"],
+{
+name:"Dining Table",
+category:"Table",
+price:"₹4,500",
+location:"Tripura",
+condition:"Good",
+status:"Available",
+delivery:"Available",
+image:"https://images.unsplash.com/photo-1617098900591-3f90928e8c54"
+},
 
-["Almirah","₹5,500","Agartala","Used","https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80"],
+{
+name:"Wooden Chair",
+category:"Chair",
+price:"₹1,200",
+location:"Tripura",
+condition:"Good",
+status:"Available",
+delivery:"Available",
+image:"https://images.unsplash.com/photo-1503602642458-232111445657"
+},
 
-["Dressing Table","₹4,000","Tripura","Good","https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80"],
+{
+name:"Almirah",
+category:"Almirah",
+price:"₹5,500",
+location:"Agartala, Tripura",
+condition:"Used",
+status:"Available",
+delivery:"Available",
+image:"https://images.unsplash.com/photo-1558997519-83ea9252edf8"
+},
 
-["Bookshelf","₹2,500","Agartala","Good","https://images.unsplash.com/photo-1594620302200-9a762244a156?auto=format&fit=crop&w=800&q=80"],
+{
+name:"Dressing Table",
+category:"Table",
+price:"₹4,000",
+location:"Tripura",
+condition:"Good",
+status:"Available",
+delivery:"Available",
+image:"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6"
+},
 
-["Single Bed","₹5,000","Tripura","Clean Used","https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80"],
+{
+name:"Bookshelf",
+category:"Table",
+price:"₹2,500",
+location:"Agartala, Tripura",
+condition:"Good",
+status:"Available",
+delivery:"Available",
+image:"https://images.unsplash.com/photo-1594620302200-9a762244a156"
+},
 
-["Wooden Table","₹3,000","Agartala","Good","https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&w=800&q=80"],
+{
+name:"Single Bed",
+category:"Bed",
+price:"₹5,000",
+location:"Tripura",
+condition:"Clean Used",
+status:"Available",
+delivery:"Available",
+image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
+},
 
-["Cabinet","₹3,500","Tripura","Good","https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=800&q=80"]
+{
+name:"Wooden Table",
+category:"Table",
+price:"₹3,000",
+location:"Agartala, Tripura",
+condition:"Good",
+status:"Available",
+delivery:"Available",
+image:"https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc"
+},
+
+{
+name:"Wooden Cabinet",
+category:"Almirah",
+price:"₹3,500",
+location:"Tripura",
+condition:"Good",
+status:"Available",
+delivery:"Available",
+image:"https://images.unsplash.com/photo-1595428774223-ef52624120d2"
+}
 
 ];
 
 function showProducts(){
 
-let search=document.getElementById("search").value.toLowerCase();
+const search =
+document.getElementById("search").value.toLowerCase();
+
+const box =
+document.getElementById("products");
 
 let html="";
 
-products
-.filter(p=>p[0].toLowerCase().includes(search))
-.forEach(p=>{
+const filtered = products.filter(p => {
 
-html+=`
+const matchSearch =
+p.name.toLowerCase().includes(search);
+
+const matchCategory =
+selectedCategory === "All" ||
+p.category === selectedCategory;
+
+return matchSearch && matchCategory;
+
+});
+
+if(filtered.length===0){
+box.innerHTML =
+'<div class="empty">😔 Furniture not found</div>';
+return;
+}
+
+filtered.forEach((p,index)=>{
+
+const statusClass =
+p.status==="Available" ? "available" : "sold";
+
+html += `
+
 <div class="card">
 
-<img src="${p[4]}">
+<img src="${p.image}" alt="${p.name}">
 
-<h2>${p[0]}</h2>
+<div class="info">
 
-<p class="price">${p[1]}</p>
+<h2>${p.name}</h2>
 
-<p>📍 ${p[2]}</p>
+<div class="price">${p.price}</div>
 
-<p>Condition: ${p[3]}</p>
+<div class="details">
 
-<p>🟢 Available</p>
+📍 <b>Location:</b> ${p.location}<br>
 
-<a href="tel:+${phone}">
-<button>📞 Call Now</button>
-</a>
+🛠️ <b>Condition:</b> ${p.condition}<br>
 
-<a href="https://wa.me/${phone}" target="_blank">
-<button class="whatsapp">💬 WhatsApp</button>
-</a>
+<span class="${statusClass}">
+${p.status==="Available" ? "🟢" : "🔴"} ${p.status}
+</span><br>
+
+🚚 <b>Delivery:</b> ${p.delivery}
 
 </div>
+
+<div class="buttons">
+
+<a class="call"
+href="tel:+${phone}">
+📞 Call
+</a>
+
+<a class="whatsapp"
+href="https://wa.me/${phone}?text=Hello%20FurniLoop,%20I%20am%20interested%20in%20${encodeURIComponent(p.name)}">
+💬 WhatsApp
+</a>
+
+<button class="interest"
+onclick="interested('${p.name}')">
+❤️ Interested
+</button>
+
+</div>
+
+</div>
+</div>
+
 `;
 
 });
 
-document.getElementById("products").innerHTML=html;
+box.innerHTML=html;
 
 }
 
-document.getElementById("search").addEventListener("input",showProducts);
+function filterCategory(category){
+
+selectedCategory=category;
+showProducts();
+
+}
+
+function interested(name){
+
+alert(
+"❤️ Thank you! You are interested in " +
+name +
+". Please contact us by Call or WhatsApp."
+);
+
+}
 
 showProducts();
 
