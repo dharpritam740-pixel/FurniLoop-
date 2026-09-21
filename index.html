@@ -6,37 +6,168 @@
 <title>FurniLoop</title>
 
 <style>
-body{font-family:Arial;margin:0;background:#f5f5f5;color:#222}
-header{background:#6b4226;color:white;text-align:center;padding:20px}
-.search{display:block;width:90%;max-width:500px;margin:15px auto;padding:12px;border-radius:8px;border:1px solid #ccc;font-size:16px}
-.categories{text-align:center}
-.categories button{margin:4px;padding:9px 14px;border:0;border-radius:20px}
-.products{width:94%;max-width:1000px;margin:15px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:15px}
-.card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px #ccc}
-.card img{width:100%;height:190px;object-fit:cover}
-.content{padding:14px}
-.price{font-size:20px;font-weight:bold;color:green}
-.info{line-height:1.7;font-size:14px}
-.card button,.review-box button{width:100%;padding:11px;margin-top:7px;border:0;border-radius:7px;color:white;font-size:15px}
+body{
+  font-family:Arial,sans-serif;
+  margin:0;
+  background:#f5f5f5;
+  color:#222;
+}
+
+header{
+  background:#6b4226;
+  color:white;
+  text-align:center;
+  padding:20px 10px;
+}
+
+header h1{margin:0 0 5px}
+
+.search{
+  display:block;
+  width:90%;
+  max-width:500px;
+  margin:15px auto;
+  padding:13px;
+  border:1px solid #ccc;
+  border-radius:10px;
+  font-size:16px;
+  box-sizing:border-box;
+}
+
+.categories{
+  text-align:center;
+  margin:10px;
+}
+
+.categories button{
+  margin:4px;
+  padding:9px 14px;
+  border:0;
+  border-radius:20px;
+  background:#ddd;
+}
+
+.products{
+  width:94%;
+  max-width:1000px;
+  margin:15px auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:15px;
+}
+
+.card{
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 2px 8px #ccc;
+}
+
+.card img{
+  width:100%;
+  height:190px;
+  object-fit:cover;
+}
+
+.content{
+  padding:14px;
+}
+
+.price{
+  font-size:20px;
+  font-weight:bold;
+  color:green;
+}
+
+.info{
+  font-size:14px;
+  line-height:1.7;
+}
+
+.card button,
+.review-box button,
+.referral button{
+  width:100%;
+  padding:11px;
+  margin-top:7px;
+  border:0;
+  border-radius:8px;
+  color:white;
+  font-size:15px;
+}
+
 .call{background:#219653}
 .whatsapp{background:#20c76a}
 .interested{background:#ff9800}
-.review-box{background:white;width:90%;max-width:650px;margin:30px auto;padding:20px;border-radius:12px;box-shadow:0 2px 8px #ccc}
-.review-box input,.review-box select,.review-box textarea{width:100%;box-sizing:border-box;padding:12px;margin:7px 0;border:1px solid #ccc;border-radius:8px}
-.review-box textarea{height:90px}
-.review-box button{background:#6b4226}
-.review{background:#f5f5f5;padding:12px;margin-top:10px;border-radius:8px}
+
+.review-box,
+.referral{
+  background:white;
+  width:90%;
+  max-width:650px;
+  margin:30px auto;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 2px 8px #ccc;
+  box-sizing:border-box;
+}
+
+.review-box input,
+.review-box select,
+.review-box textarea{
+  width:100%;
+  box-sizing:border-box;
+  padding:12px;
+  margin:7px 0;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:15px;
+}
+
+.review-box textarea{
+  height:90px;
+  resize:none;
+}
+
+.review-box button{
+  background:#6b4226;
+}
+
+.referral button{
+  background:#219653;
+}
+
+.review{
+  background:#f5f5f5;
+  padding:12px;
+  margin-top:10px;
+  border-radius:8px;
+}
+
+footer{
+  background:#333;
+  color:white;
+  text-align:center;
+  padding:20px;
+  margin-top:30px;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>FurniLoop</h1>
+<h1>🪑 FurniLoop</h1>
 <p>Second-Hand Furniture in Tripura</p>
 </header>
 
-<input id="search" class="search" placeholder="🔍 Search Furniture..." onkeyup="showProducts()">
+<input
+  id="search"
+  class="search"
+  type="text"
+  placeholder="🔍 Search Furniture..."
+  onkeyup="showProducts()"
+>
 
 <div class="categories">
 <button onclick="setCategory('All')">All</button>
@@ -48,52 +179,41 @@ header{background:#6b4226;color:white;text-align:center;padding:20px}
 </div>
 
 <div id="products" class="products"></div>
-<!-- Refer & Earn -->
-<div class="review-box">
-  <h2>🎁 Refer & Earn</h2>
 
-  <p>বন্ধুকে FurniLoop-এর কথা বলুন এবং furniture কিনলে ₹300 পান!</p>
 
-  <button
-    onclick="shareFurniLoop()"
-    style="background:#219653;color:white;width:100%;padding:12px;border:0;border-radius:8px;">
-    📲 Share FurniLoop
-  </button>
+<!-- REFER & EARN -->
+
+<div class="referral">
+
+<h2>🎁 Refer & Earn</h2>
+
+<p>
+বন্ধুকে FurniLoop-এর কথা বলুন।
+বন্ধু furniture কিনলে ₹300 reward পান!
+</p>
+
+<p>
+<b>Referral Code: FURNI300</b>
+</p>
+
+<button onclick="shareFurniLoop()">
+📲 Share FurniLoop
+</button>
+
 </div>
 
-<script>
-function shareFurniLoop(){
 
-  const link = "https://dharpritam740-pixel.github.io/FurniLoop-/";
+<!-- CUSTOMER REVIEWS -->
 
-  const message =
-  "🪑 FurniLoop – Second-Hand Furniture in Tripura\n\n" +
-  "Furniture কিনতে FurniLoop দেখুন:\n" +
-  link +
-  "\n\nআপনার বন্ধুকে আমার Referral Code দিন: FURNI300";
-
-  if(navigator.share){
-
-    navigator.share({
-      title:"FurniLoop",
-      text:message
-    });
-
-  }else{
-
-    window.open(
-      "https://wa.me/?text=" +
-      encodeURIComponent(message),
-      "_blank"
-    );
-
-  }
-}
-</script>
 <div class="review-box">
+
 <h2>⭐ Customer Reviews</h2>
 
-<input id="reviewName" placeholder="Your Name">
+<input
+  id="reviewName"
+  type="text"
+  placeholder="Your Name"
+>
 
 <select id="reviewRating">
 <option value="5">⭐⭐⭐⭐⭐</option>
@@ -103,61 +223,180 @@ function shareFurniLoop(){
 <option value="1">⭐</option>
 </select>
 
-<textarea id="reviewText" placeholder="Write your review"></textarea>
+<textarea
+  id="reviewText"
+  placeholder="Write your review"
+></textarea>
 
-<button onclick="submitReview()">Submit Review</button>
+<button onclick="submitReview()">
+Submit Review
+</button>
 
 <div id="reviewList"></div>
+
 </div>
+
+
+<footer>
+© 2026 FurniLoop | Tripura
+</footer>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-const SUPABASE_URL="https://xrtbizswrxbccyqmzetw.supabase.co";
-const SUPABASE_KEY="sb_publishable_iQVUPQExXfCCm4NSxDZ-Dg_AOhTpVTw";
+const SUPABASE_URL =
+"https://xrtbizswrxbccyqmzetw.supabase.co";
 
-const supabaseClient=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const SUPABASE_KEY =
+"sb_publishable_iQVUPQExXfCCm4NSxDZ-Dg_AOhTpVTw";
+
+const supabaseClient =
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
 
 const phone="916909988186";
 
+
 const products=[
-{name:"Sofa Set",category:"Sofa",price:"₹8,500",location:"Agartala, Tripura",condition:"Good",image:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc"},
-{name:"Double Bed",category:"Bed",price:"₹9,000",location:"Agartala, Tripura",condition:"Good",image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"},
-{name:"Dining Table",category:"Table",price:"₹4,500",location:"Tripura",condition:"Good",image:"https://images.unsplash.com/photo-1617104678098-de229db51175"},
-{name:"Wooden Chair",category:"Chair",price:"₹1,200",location:"Tripura",condition:"Good",image:"https://images.unsplash.com/photo-1503602642458-232111445657"},
-{name:"Almirah",category:"Almirah",price:"₹5,500",location:"Agartala, Tripura",condition:"Used",image:"https://images.unsplash.com/photo-1595428774223-ef52624120d2"},
-{name:"Dressing Table",category:"Table",price:"₹4,000",location:"Tripura",condition:"Good",image:"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6"},
-{name:"Bookshelf",category:"Table",price:"₹2,500",location:"Agartala, Tripura",condition:"Good",image:"https://images.unsplash.com/photo-1594620302200-9a762244a156"},
-{name:"Single Bed",category:"Bed",price:"₹5,000",location:"Tripura",condition:"Clean Used",image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"},
-{name:"Wooden Table",category:"Table",price:"₹3,000",location:"Agartala, Tripura",condition:"Good",image:"https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc"},
-{name:"Wooden Cabinet",category:"Almirah",price:"₹3,500",location:"Tripura",condition:"Good",image:"https://images.unsplash.com/photo-1595428774223-ef52624120d2"}
+
+{
+name:"Sofa Set",
+category:"Sofa",
+price:"₹8,500",
+location:"Agartala, Tripura",
+condition:"Good",
+image:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc"
+},
+
+{
+name:"Double Bed",
+category:"Bed",
+price:"₹9,000",
+location:"Agartala, Tripura",
+condition:"Good",
+image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
+},
+
+{
+name:"Dining Table",
+category:"Table",
+price:"₹4,500",
+location:"Tripura",
+condition:"Good",
+image:"https://images.unsplash.com/photo-1617104678098-de229db51175"
+},
+
+{
+name:"Wooden Chair",
+category:"Chair",
+price:"₹1,200",
+location:"Tripura",
+condition:"Good",
+image:"https://images.unsplash.com/photo-1503602642458-232111445657"
+},
+
+{
+name:"Almirah",
+category:"Almirah",
+price:"₹5,500",
+location:"Agartala, Tripura",
+condition:"Used",
+image:"https://images.unsplash.com/photo-1595428774223-ef52624120d2"
+},
+
+{
+name:"Dressing Table",
+category:"Table",
+price:"₹4,000",
+location:"Tripura",
+condition:"Good",
+image:"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6"
+},
+
+{
+name:"Bookshelf",
+category:"Table",
+price:"₹2,500",
+location:"Agartala, Tripura",
+condition:"Good",
+image:"https://images.unsplash.com/photo-1594620302200-9a762244a156"
+},
+
+{
+name:"Single Bed",
+category:"Bed",
+price:"₹5,000",
+location:"Tripura",
+condition:"Clean Used",
+image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
+},
+
+{
+name:"Wooden Table",
+category:"Table",
+price:"₹3,000",
+location:"Agartala, Tripura",
+condition:"Good",
+image:"https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc"
+},
+
+{
+name:"Wooden Cabinet",
+category:"Almirah",
+price:"₹3,500",
+location:"Tripura",
+condition:"Good",
+image:"https://images.unsplash.com/photo-1595428774223-ef52624120d2"
+}
+
 ];
+
 
 let category="All";
 
+
 function showProducts(){
 
-let search=document.getElementById("search").value.toLowerCase();
-let box=document.getElementById("products");
+const search=
+document.getElementById("search")
+.value
+.toLowerCase();
+
+const box=
+document.getElementById("products");
 
 box.innerHTML="";
 
-products.filter(p=>
-(category==="All"||p.category===category)&&
+
+products
+.filter(p=>
+(category==="All" ||
+p.category===category) &&
 p.name.toLowerCase().includes(search)
-).forEach(p=>{
+)
+.forEach(p=>{
 
 box.innerHTML+=`
+
 <div class="card">
 
-<img src="${p.image}" alt="${p.name}">
+<img
+src="${p.image}"
+alt="${p.name}"
+>
 
 <div class="content">
 
 <h2>${p.name}</h2>
 
-<div class="price">${p.price}</div>
+<div class="price">
+${p.price}
+</div>
 
 <div class="info">
 📍 ${p.location}<br>
@@ -166,97 +405,234 @@ box.innerHTML+=`
 🟢 Available
 </div>
 
-<button class="call" onclick="callNow()">📞 Call</button>
+<button
+class="call"
+onclick="callNow()">
+📞 Call
+</button>
 
-<button class="whatsapp" onclick="whatsapp('${p.name}')">💬 WhatsApp</button>
+<button
+class="whatsapp"
+onclick="whatsapp('${p.name}')">
+💬 WhatsApp
+</button>
 
-<button class="interested" onclick="alert('Thank you! ❤️')">❤️ Interested</button>
+<button
+class="interested"
+onclick="interested('${p.name}')">
+❤️ Interested
+</button>
 
 </div>
 </div>
+
 `;
 
 });
 
 }
 
+
 function setCategory(c){
+
 category=c;
 showProducts();
+
 }
 
+
 function callNow(){
-location.href="tel:+916909988186";
+
+window.location.href=
+"tel:+916909988186";
+
 }
+
 
 function whatsapp(product){
 
-let msg="Hello FurniLoop, I am interested in "+product;
+const message=
+"Hello FurniLoop, I am interested in "
++product;
 
 window.open(
-"https://wa.me/"+phone+"?text="+encodeURIComponent(msg),
+"https://wa.me/"
++phone+
+"?text="+
+encodeURIComponent(message),
 "_blank"
 );
 
 }
 
-async function submitReview(){
 
-let name=document.getElementById("reviewName").value.trim();
-let rating=Number(document.getElementById("reviewRating").value);
-let review=document.getElementById("reviewText").value.trim();
+function interested(product){
 
-if(!name||!review){
-alert("Please enter your name and review");
-return;
+alert(
+"Thank you! ❤️ You are interested in "
++product+
+". Please contact us by Call or WhatsApp."
+);
+
 }
 
-let {error}=await supabaseClient
+
+/* REFER & EARN */
+
+function shareFurniLoop(){
+
+const link=
+"https://dharpritam740-pixel.github.io/FurniLoop-/";
+
+const message=
+"🪑 FurniLoop - Second-Hand Furniture in Tripura\n\n"+
+"Furniture দেখতে এখানে যান:\n"+
+link+
+"\n\nReferral Code: FURNI300";
+
+if(navigator.share){
+
+navigator.share({
+title:"FurniLoop",
+text:message
+});
+
+}else{
+
+window.open(
+"https://wa.me/?text="+
+encodeURIComponent(message),
+"_blank"
+);
+
+}
+
+}
+
+
+/* SUBMIT REVIEW */
+
+async function submitReview(){
+
+const name=
+document.getElementById("reviewName")
+.value.trim();
+
+const rating=
+Number(
+document.getElementById("reviewRating")
+.value
+);
+
+const review=
+document.getElementById("reviewText")
+.value.trim();
+
+
+if(!name || !review){
+
+alert(
+"Please enter your name and review"
+);
+
+return;
+
+}
+
+
+const {error}=
+await supabaseClient
 .from("reviews")
 .insert({
+
 name:name,
 rating:rating,
 review:review
+
 });
 
+
 if(error){
-alert("Review submit হয়নি। আবার চেষ্টা করুন।");
+
+alert(
+"Review submit হয়নি। আবার চেষ্টা করুন।"
+);
+
 console.error(error);
+
 return;
+
 }
 
-alert("Thank you for your review! ⭐");
 
-document.getElementById("reviewName").value="";
-document.getElementById("reviewText").value="";
+alert(
+"Thank you for your review! ⭐"
+);
+
+
+document.getElementById(
+"reviewName"
+).value="";
+
+document.getElementById(
+"reviewText"
+).value="";
+
 
 loadReviews();
+
 }
+
+
+/* LOAD REVIEWS */
 
 async function loadReviews(){
 
-let {data,error}=await supabaseClient
+const {data,error}=
+await supabaseClient
 .from("reviews")
 .select("*")
-.order("created_at",{ascending:false});
+.order(
+"created_at",
+{ascending:false}
+);
+
 
 if(error){
+
 console.error(error);
 return;
+
 }
 
-let list=document.getElementById("reviewList");
+
+const list=
+document.getElementById(
+"reviewList"
+);
+
 list.innerHTML="";
+
 
 data.forEach(item=>{
 
-let div=document.createElement("div");
+const div=
+document.createElement("div");
+
 div.className="review";
 
 div.innerHTML=`
+
 <b>${escapeHtml(item.name)}</b>
-<div>${"⭐".repeat(item.rating)}</div>
-<p>${escapeHtml(item.review)}</p>
+
+<div>
+${"⭐".repeat(item.rating)}
+</div>
+
+<p>
+${escapeHtml(item.review)}
+</p>
+
 `;
 
 list.appendChild(div);
@@ -265,15 +641,25 @@ list.appendChild(div);
 
 }
 
+
+/* SECURITY */
+
 function escapeHtml(text){
 
-let div=document.createElement("div");
+const div=
+document.createElement("div");
+
 div.textContent=text;
+
 return div.innerHTML;
 
 }
 
+
+/* START */
+
 showProducts();
+
 loadReviews();
 
 </script>
