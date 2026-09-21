@@ -3,183 +3,306 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FurniLoop | Furniture Marketplace</title>
+<title>FurniLoop | Premium Furniture Marketplace</title>
 
 <style>
 *{box-sizing:border-box}
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f7f5f1;
-  color:#222;
+margin:0;
+font-family:Arial,sans-serif;
+background:#f6f5f1;
+color:#222
 }
 header{
-  background:linear-gradient(135deg,#173f35,#2f6b58);
-  color:white;
-  padding:22px 5%;
+background:linear-gradient(135deg,#102f27,#2f705b);
+color:white;
+padding:18px 5%;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 3px 15px #0003
 }
 .nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px
 }
 .logo{
-  font-size:28px;
-  font-weight:bold;
+font-size:28px;
+font-weight:bold
 }
-.tagline{font-size:13px;opacity:.85}
+.tagline{
+font-size:12px;
+opacity:.8
+}
+.nav-right{
+display:flex;
+gap:8px
+}
+.nav-btn{
+background:#ffffff20;
+border:1px solid #ffffff40;
+color:white;
+padding:9px 13px;
+border-radius:20px;
+cursor:pointer
+}
+
 .hero{
-  padding:35px 5%;
-  background:linear-gradient(135deg,#e9f1ec,#fff);
+padding:55px 5%;
+background:linear-gradient(135deg,#e8f1eb,#fff);
 }
 .hero h1{
-  font-size:34px;
-  margin:0 0 10px;
+font-size:42px;
+margin:0 0 12px
 }
 .hero p{
-  color:#666;
-  max-width:600px;
+max-width:650px;
+color:#666;
+line-height:1.6
 }
 .search{
-  width:100%;
-  max-width:650px;
-  padding:15px 18px;
-  border:1px solid #ddd;
-  border-radius:30px;
-  font-size:16px;
-  margin-top:15px;
+width:100%;
+max-width:700px;
+padding:16px 20px;
+border:1px solid #ddd;
+border-radius:30px;
+font-size:16px;
+margin-top:15px;
+outline:none
 }
+
 .categories{
-  padding:18px 5%;
-  display:flex;
-  gap:8px;
-  overflow-x:auto;
+padding:18px 5%;
+display:flex;
+gap:9px;
+overflow-x:auto
 }
 .categories button{
-  white-space:nowrap;
-  padding:10px 17px;
-  border:0;
-  border-radius:25px;
-  background:white;
-  box-shadow:0 2px 8px #ddd;
-  cursor:pointer;
+white-space:nowrap;
+padding:11px 18px;
+border:0;
+border-radius:25px;
+background:white;
+box-shadow:0 2px 9px #ddd;
+cursor:pointer
 }
+.categories button:hover{
+background:#28634f;
+color:white
+}
+
 .section-title{
-  padding:10px 5%;
+padding:10px 5%
 }
 .products{
-  width:90%;
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:20px;
+width:90%;
+max-width:1250px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:22px
 }
+
 .card{
-  background:white;
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:0 4px 15px #ddd;
-  transition:.2s;
+background:white;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 5px 20px #0001;
+transition:.25s
 }
-.card:hover{transform:translateY(-3px)}
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 10px 28px #0002
+}
+.card-img{
+position:relative
+}
 .card img{
-  width:100%;
-  height:210px;
-  object-fit:cover;
+width:100%;
+height:220px;
+object-fit:cover
 }
-.content{padding:16px}
+.heart{
+position:absolute;
+right:12px;
+top:12px;
+border:0;
+background:white;
+width:40px;
+height:40px;
+border-radius:50%;
+font-size:20px;
+cursor:pointer;
+box-shadow:0 2px 8px #0002
+}
+.content{
+padding:17px
+}
 .badge{
-  display:inline-block;
-  background:#e7f3ed;
-  color:#28634f;
-  padding:5px 9px;
-  border-radius:15px;
-  font-size:12px;
+display:inline-block;
+background:#e8f4ee;
+color:#28634f;
+padding:6px 10px;
+border-radius:15px;
+font-size:12px
 }
 .price{
-  font-size:21px;
-  font-weight:bold;
-  color:#1d805b;
-  margin:8px 0;
+font-size:23px;
+font-weight:bold;
+color:#1d805b;
+margin:8px 0
 }
 .info{
-  color:#666;
-  font-size:14px;
-  line-height:1.7;
+color:#666;
+font-size:14px;
+line-height:1.8
 }
 .btn{
-  width:100%;
-  border:0;
-  padding:11px;
-  margin-top:8px;
-  border-radius:9px;
-  color:white;
-  font-size:14px;
+width:100%;
+border:0;
+padding:12px;
+margin-top:8px;
+border-radius:10px;
+color:white;
+font-size:14px;
+cursor:pointer
 }
-.call{background:#2563eb}
-.whatsapp{background:#20b968}
-.interested{background:#e58b20}
+.view{
+background:#173f35
+}
+.buy{
+background:#e58b20
+}
+.whatsapp{
+background:#20b968
+}
 
 .box{
-  width:90%;
-  max-width:700px;
-  margin:35px auto;
-  background:white;
-  padding:25px;
-  border-radius:18px;
-  box-shadow:0 4px 15px #ddd;
+width:90%;
+max-width:750px;
+margin:40px auto;
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 5px 20px #0001
 }
+
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:#0008;
+z-index:2000;
+padding:20px;
+overflow:auto
+}
+.modal-box{
+background:white;
+max-width:600px;
+margin:40px auto;
+border-radius:20px;
+padding:25px;
+position:relative
+}
+.close{
+position:absolute;
+right:15px;
+top:12px;
+border:0;
+background:#eee;
+border-radius:50%;
+width:35px;
+height:35px;
+cursor:pointer
+}
+.modal-box img{
+width:100%;
+height:280px;
+object-fit:cover;
+border-radius:15px
+}
+.input{
+width:100%;
+padding:13px;
+margin:7px 0;
+border:1px solid #ddd;
+border-radius:10px;
+font-size:15px
+}
+.confirm{
+width:100%;
+background:#28634f;
+color:white;
+border:0;
+padding:14px;
+border-radius:10px;
+font-size:16px;
+cursor:pointer
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px;
+border-bottom:1px solid #eee
+}
+.cart-total{
+font-size:20px;
+font-weight:bold;
+margin:15px 0
+}
+
 .referral{
-  background:linear-gradient(135deg,#fff0cf,#fff);
+background:linear-gradient(135deg,#fff0cf,#fff)
 }
-.referral button{
-  background:#e39a20;
-  color:white;
-  border:0;
-  padding:12px;
-  width:100%;
-  border-radius:9px;
-  font-size:15px;
-}
+
 .review-input{
-  width:100%;
-  padding:12px;
-  margin:7px 0;
-  border:1px solid #ddd;
-  border-radius:9px;
+width:100%;
+padding:12px;
+margin:7px 0;
+border:1px solid #ddd;
+border-radius:9px
 }
-textarea.review-input{height:90px}
+textarea.review-input{
+height:90px
+}
 .review-submit{
-  background:#28634f;
-  color:white;
-  border:0;
-  width:100%;
-  padding:12px;
-  border-radius:9px;
+background:#28634f;
+color:white;
+border:0;
+width:100%;
+padding:12px;
+border-radius:9px
 }
 .review{
-  background:#f5f5f5;
-  padding:13px;
-  margin-top:10px;
-  border-radius:10px;
+background:#f5f5f5;
+padding:13px;
+margin-top:10px;
+border-radius:10px
 }
+
 footer{
-  background:#173f35;
-  color:white;
-  text-align:center;
-  padding:25px;
-  margin-top:40px;
+background:#173f35;
+color:white;
+text-align:center;
+padding:30px;
+margin-top:50px
 }
-footer a{
-  color:white;
-  text-decoration:none;
-}
+
 .empty{
-  text-align:center;
-  padding:30px;
-  color:#777;
+text-align:center;
+padding:40px;
+color:#777
+}
+
+@media(max-width:600px){
+.hero h1{font-size:30px}
+.logo{font-size:23px}
+.nav-right .nav-btn{padding:7px 9px}
+.card img{height:200px}
 }
 </style>
 </head>
@@ -187,61 +310,156 @@ footer a{
 <body>
 
 <header>
-  <div class="nav">
-    <div>
-      <div class="logo">🪑 FurniLoop</div>
-      <div class="tagline">Smart Furniture Marketplace</div>
-    </div>
-    <div>📍 Tripura</div>
-  </div>
+<div class="nav">
+
+<div>
+<div class="logo">🪑 FurniLoop</div>
+<div class="tagline">Premium Furniture Marketplace</div>
+</div>
+
+<div class="nav-right">
+<button class="nav-btn" onclick="openCart()">🛒 <span id="cartCount">0</span></button>
+<button class="nav-btn" onclick="openWishlist()">❤️</button>
+</div>
+
+</div>
 </header>
 
 <section class="hero">
-  <h1>Beautiful Furniture. Better Prices.</h1>
-  <p>
-    Find quality second-hand furniture at affordable prices.
-    Buy smart and give furniture another life.
-  </p>
 
-  <input
-    id="search"
-    class="search"
-    placeholder="🔍 Search sofa, bed, chair..."
-    onkeyup="showProducts()"
-  >
+<h1>Beautiful Furniture.<br>Better Prices.</h1>
+
+<p>
+Buy quality second-hand furniture at affordable prices.
+Give beautiful furniture a second life.
+</p>
+
+<input
+id="search"
+class="search"
+placeholder="🔍 Search sofa, bed, chair..."
+onkeyup="showProducts()"
+>
+
 </section>
 
 <div class="categories">
-  <button onclick="setCategory('All')">All</button>
-  <button onclick="setCategory('Sofa')">🛋️ Sofa</button>
-  <button onclick="setCategory('Bed')">🛏️ Bed</button>
-  <button onclick="setCategory('Chair')">🪑 Chair</button>
-  <button onclick="setCategory('Table')">🪵 Table</button>
-  <button onclick="setCategory('Almirah')">🚪 Almirah</button>
+<button onclick="setCategory('All')">All</button>
+<button onclick="setCategory('Sofa')">🛋️ Sofa</button>
+<button onclick="setCategory('Bed')">🛏️ Bed</button>
+<button onclick="setCategory('Chair')">🪑 Chair</button>
+<button onclick="setCategory('Table')">🪵 Table</button>
+<button onclick="setCategory('Almirah')">🚪 Almirah</button>
 </div>
 
 <div class="section-title">
-  <h2>🔥 Featured Furniture</h2>
+<h2>🔥 Featured Furniture</h2>
 </div>
 
 <div id="products" class="products"></div>
 
 
+<!-- CART MODAL -->
+
+<div id="cartModal" class="modal">
+
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('cartModal')">✕</button>
+
+<h2>🛒 Your Cart</h2>
+
+<div id="cartList"></div>
+
+<div id="cartTotal" class="cart-total"></div>
+
+<button class="confirm" onclick="checkoutCart()">
+📦 Order Cart
+</button>
+
+</div>
+</div>
+
+
+<!-- DETAILS MODAL -->
+
+<div id="detailsModal" class="modal">
+
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('detailsModal')">✕</button>
+
+<div id="detailsContent"></div>
+
+</div>
+</div>
+
+
+<!-- ORDER MODAL -->
+
+<div id="orderModal" class="modal">
+
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('orderModal')">✕</button>
+
+<h2>📦 Place Your Order</h2>
+
+<div id="orderProduct"></div>
+
+<input id="buyerName" class="input" placeholder="Your Name">
+
+<input id="buyerPhone" class="input" placeholder="Mobile Number">
+
+<textarea id="buyerAddress" class="input" placeholder="Delivery Address"></textarea>
+
+<select id="paymentMethod" class="input">
+<option>Cash on Delivery</option>
+<option>Pay on WhatsApp</option>
+</select>
+
+<button class="confirm" onclick="confirmOrder()">
+✅ Confirm Order
+</button>
+
+</div>
+</div>
+
+
+<!-- WISHLIST -->
+
+<div id="wishlistModal" class="modal">
+
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('wishlistModal')">✕</button>
+
+<h2>❤️ Wishlist</h2>
+
+<div id="wishlistList"></div>
+
+</div>
+</div>
+
+
 <!-- REFER -->
 
 <div class="box referral">
-  <h2>🎁 Refer & Earn ₹300</h2>
 
-  <p>
-    Share FurniLoop with your friends.
-    Get ₹300 benefit when buying furniture using your referral.
-  </p>
+<h2>🎁 Refer & Earn ₹300</h2>
 
-  <p><b>Referral Code: FURNI300</b></p>
+<p>
+Share FurniLoop with friends and get benefits.
+</p>
 
-  <button onclick="shareFurniLoop()">
-    📲 Share FurniLoop
-  </button>
+<p><b>Referral Code: FURNI300</b></p>
+
+<button
+class="confirm"
+onclick="shareFurniLoop()">
+📲 Share FurniLoop
+</button>
+
 </div>
 
 
@@ -249,58 +467,52 @@ footer a{
 
 <div class="box">
 
-  <h2>⭐ Customer Reviews</h2>
+<h2>⭐ Customer Reviews</h2>
 
-  <input
-    id="reviewName"
-    class="review-input"
-    placeholder="Your Name"
-  >
+<input
+id="reviewName"
+class="review-input"
+placeholder="Your Name"
+>
 
-  <select id="reviewRating" class="review-input">
-    <option value="5">⭐⭐⭐⭐⭐</option>
-    <option value="4">⭐⭐⭐⭐</option>
-    <option value="3">⭐⭐⭐</option>
-    <option value="2">⭐⭐</option>
-    <option value="1">⭐</option>
-  </select>
+<select id="reviewRating" class="review-input">
+<option value="5">⭐⭐⭐⭐⭐</option>
+<option value="4">⭐⭐⭐⭐</option>
+<option value="3">⭐⭐⭐</option>
+<option value="2">⭐⭐</option>
+<option value="1">⭐</option>
+</select>
 
-  <textarea
-    id="reviewText"
-    class="review-input"
-    placeholder="Write your review..."
-  ></textarea>
+<textarea
+id="reviewText"
+class="review-input"
+placeholder="Write your review..."
+></textarea>
 
-  <button
-    class="review-submit"
-    onclick="submitReview()"
-  >
-    Submit Review
-  </button>
+<button
+class="review-submit"
+onclick="submitReview()">
+Submit Review
+</button>
 
-  <div id="reviewList"></div>
+<div id="reviewList"></div>
 
 </div>
 
 
 <footer>
 
-  <h2>🪑 FurniLoop</h2>
+<h2>🪑 FurniLoop</h2>
 
-  <p>Buy Smart. Save More.</p>
+<p>Buy Smart. Save More.</p>
 
-  <p>
-    📞 Call / WhatsApp:
-    <b>6909988186</b>
-  </p>
+<p>📞 Call / WhatsApp: <b>6909988186</b></p>
 
-  <p>
-    📍 Available in Tripura
-  </p>
+<p>📍 Available in Tripura</p>
 
-  <p>
-    © 2026 FurniLoop
-  </p>
+<p>🚚 Furniture Delivery Available</p>
+
+<p>© 2026 FurniLoop</p>
 
 </footer>
 
@@ -324,77 +536,86 @@ SUPABASE_KEY
 const phone="916909988186";
 
 let category="All";
-
+let cart=[];
+let wishlist=[];
 
 const products=[
 
 {
+id:1,
 name:"Elegant Sofa Set",
 category:"Sofa",
-price:"₹8,500",
+price:8500,
 location:"Agartala, Tripura",
 condition:"Good",
 image:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc"
 },
 
 {
+id:2,
 name:"Premium Double Bed",
 category:"Bed",
-price:"₹9,000",
+price:9000,
 location:"Agartala, Tripura",
 condition:"Good",
 image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
 },
 
 {
+id:3,
 name:"Wooden Dining Table",
 category:"Table",
-price:"₹4,500",
+price:4500,
 location:"Tripura",
 condition:"Good",
 image:"https://images.unsplash.com/photo-1617104678098-de229db51175"
 },
 
 {
+id:4,
 name:"Classic Wooden Chair",
 category:"Chair",
-price:"₹1,200",
+price:1200,
 location:"Tripura",
 condition:"Good",
 image:"https://images.unsplash.com/photo-1503602642458-232111445657"
 },
 
 {
+id:5,
 name:"Wooden Almirah",
 category:"Almirah",
-price:"₹5,500",
+price:5500,
 location:"Agartala, Tripura",
 condition:"Used",
 image:"https://images.unsplash.com/photo-1595428774223-ef52624120d2"
 },
 
 {
+id:6,
 name:"Dressing Table",
 category:"Table",
-price:"₹4,000",
+price:4000,
 location:"Tripura",
 condition:"Good",
 image:"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6"
 },
 
 {
+id:7,
 name:"Wooden Bookshelf",
 category:"Table",
-price:"₹2,500",
+price:2500,
 location:"Agartala, Tripura",
 condition:"Good",
 image:"https://images.unsplash.com/photo-1594620302200-9a762244a156"
 },
 
 {
+id:8,
 name:"Single Bed",
 category:"Bed",
-price:"₹5,000",
+price:5000,
 location:"Tripura",
 condition:"Clean Used",
 image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
@@ -403,20 +624,24 @@ image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
 ];
 
 
+function money(n){
+return "₹"+n.toLocaleString("en-IN");
+}
+
+
 function showProducts(){
 
-const search =
+const search=
 document.getElementById("search")
-.value
-.toLowerCase();
+.value.toLowerCase();
 
-const box =
+const box=
 document.getElementById("products");
 
 box.innerHTML="";
 
-const filtered =
-products.filter(p =>
+const filtered=
+products.filter(p=>
 
 (category==="All" ||
 p.category===category) &&
@@ -426,8 +651,7 @@ p.name.toLowerCase()
 
 );
 
-
-if(filtered.length===0){
+if(!filtered.length){
 
 box.innerHTML=
 `<div class="empty">
@@ -436,20 +660,29 @@ box.innerHTML=
 </div>`;
 
 return;
-
 }
 
 
 filtered.forEach(p=>{
 
-box.innerHTML += `
+const liked=
+wishlist.some(x=>x.id===p.id);
+
+box.innerHTML+=`
 
 <div class="card">
 
-<img
-src="${p.image}"
-alt="${p.name}"
->
+<div class="card-img">
+
+<img src="${p.image}" alt="${p.name}">
+
+<button
+class="heart"
+onclick="toggleWishlist(${p.id})">
+${liked?"❤️":"♡"}
+</button>
+
+</div>
 
 <div class="content">
 
@@ -460,7 +693,7 @@ ${p.category}
 <h2>${p.name}</h2>
 
 <div class="price">
-${p.price}
+${money(p.price)}
 </div>
 
 <div class="info">
@@ -470,9 +703,15 @@ ${p.price}
 </div>
 
 <button
-class="btn call"
-onclick="callNow()">
-📞 Call
+class="btn view"
+onclick="viewDetails(${p.id})">
+👁️ View Details
+</button>
+
+<button
+class="btn buy"
+onclick="buyNow(${p.id})">
+⚡ Buy Now
 </button>
 
 <button
@@ -481,14 +720,7 @@ onclick="whatsapp('${p.name}')">
 💬 WhatsApp
 </button>
 
-<button
-class="btn interested"
-onclick="interested('${p.name}')">
-❤️ Interested
-</button>
-
 </div>
-
 </div>
 
 `;
@@ -499,26 +731,346 @@ onclick="interested('${p.name}')">
 
 
 function setCategory(c){
-
 category=c;
+showProducts();
+}
+
+
+function viewDetails(id){
+
+const p=
+products.find(x=>x.id===id);
+
+document.getElementById("detailsContent").innerHTML=`
+
+<img src="${p.image}">
+
+<h2>${p.name}</h2>
+
+<div class="price">${money(p.price)}</div>
+
+<p>
+<b>Category:</b> ${p.category}<br>
+<b>Location:</b> ${p.location}<br>
+<b>Condition:</b> ${p.condition}<br>
+<b>Delivery:</b> Available
+</p>
+
+<button
+class="btn buy"
+onclick="buyNow(${p.id})">
+⚡ Buy Now
+</button>
+
+<button
+class="btn view"
+onclick="addCart(${p.id})">
+🛒 Add to Cart
+</button>
+
+`;
+
+document.getElementById("detailsModal")
+.style.display="block";
+
+}
+
+
+function buyNow(id){
+
+const p=
+products.find(x=>x.id===id);
+
+document.getElementById("orderProduct").innerHTML=
+`
+<div class="review">
+<b>${p.name}</b><br>
+Price: ${money(p.price)}
+</div>
+`;
+
+document.getElementById("orderModal")
+.dataset.product=id;
+
+closeModal("detailsModal");
+
+document.getElementById("orderModal")
+.style.display="block";
+
+}
+
+
+function addCart(id){
+
+const p=
+products.find(x=>x.id===id);
+
+if(!cart.some(x=>x.id===id)){
+cart.push(p);
+}
+
+updateCart();
+
+alert("🛒 Added to cart!");
+
+}
+
+
+function updateCart(){
+
+document.getElementById("cartCount")
+.innerText=cart.length;
+
+}
+
+
+function openCart(){
+
+const list=
+document.getElementById("cartList");
+
+list.innerHTML="";
+
+if(!cart.length){
+
+list.innerHTML=
+"<p>Your cart is empty.</p>";
+
+document.getElementById("cartTotal")
+.innerText="";
+
+}else{
+
+let total=0;
+
+cart.forEach(p=>{
+
+total+=p.price;
+
+list.innerHTML+=`
+
+<div class="cart-item">
+
+<div>
+<b>${p.name}</b><br>
+${money(p.price)}
+</div>
+
+<button
+onclick="removeCart(${p.id})">
+❌
+</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("cartTotal")
+.innerText=
+"Total: "+money(total);
+
+}
+
+document.getElementById("cartModal")
+.style.display="block";
+
+}
+
+
+function removeCart(id){
+
+cart=
+cart.filter(x=>x.id!==id);
+
+updateCart();
+openCart();
+
+}
+
+
+function checkoutCart(){
+
+if(!cart.length){
+
+alert("Your cart is empty.");
+
+return;
+
+}
+
+const names=
+cart.map(x=>x.name).join(", ");
+
+document.getElementById("orderProduct").innerHTML=
+`
+<div class="review">
+<b>Cart Order</b><br>
+${names}
+</div>
+`;
+
+document.getElementById("orderModal")
+.dataset.product="cart";
+
+closeModal("cartModal");
+
+document.getElementById("orderModal")
+.style.display="block";
+
+}
+
+
+function confirmOrder(){
+
+const name=
+document.getElementById("buyerName")
+.value.trim();
+
+const buyerPhone=
+document.getElementById("buyerPhone")
+.value.trim();
+
+const address=
+document.getElementById("buyerAddress")
+.value.trim();
+
+const payment=
+document.getElementById("paymentMethod")
+.value;
+
+if(!name || !buyerPhone || !address){
+
+alert("Please fill all details.");
+
+return;
+
+}
+
+let productText="";
+
+if(document.getElementById("orderModal").dataset.product==="cart"){
+
+productText=
+cart.map(p=>
+p.name+" - "+money(p.price)
+).join("\n");
+
+}else{
+
+const p=
+products.find(x=>
+x.id==
+document.getElementById("orderModal").dataset.product
+);
+
+productText=
+p.name+" - "+money(p.price);
+
+}
+
+const message=
+"🪑 FurniLoop Order\n\n"+
+"Customer: "+name+"\n"+
+"Phone: "+buyerPhone+"\n"+
+"Address: "+address+"\n"+
+"Payment: "+payment+"\n\n"+
+"Products:\n"+
+productText;
+
+window.open(
+"https://wa.me/"+phone+
+"?text="+
+encodeURIComponent(message),
+"_blank"
+);
+
+alert("Order details WhatsApp-এ পাঠানো হয়েছে. ❤️");
+
+document.getElementById("orderModal")
+.style.display="none";
+
+}
+
+
+function toggleWishlist(id){
+
+const p=
+products.find(x=>x.id===id);
+
+if(wishlist.some(x=>x.id===id)){
+
+wishlist=
+wishlist.filter(x=>x.id!==id);
+
+}else{
+
+wishlist.push(p);
+
+}
+
 showProducts();
 
 }
 
 
-function callNow(){
+function openWishlist(){
 
-location.href =
-"tel:+916909988186";
+const list=
+document.getElementById("wishlistList");
+
+list.innerHTML="";
+
+if(!wishlist.length){
+
+list.innerHTML="<p>No wishlist items.</p>";
+
+}else{
+
+wishlist.forEach(p=>{
+
+list.innerHTML+=`
+
+<div class="cart-item">
+
+<div>
+<b>${p.name}</b><br>
+${money(p.price)}
+</div>
+
+<button
+onclick="buyNow(${p.id})">
+Buy
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+document.getElementById("wishlistModal")
+.style.display="block";
+
+}
+
+
+function closeModal(id){
+
+document.getElementById(id)
+.style.display="none";
 
 }
 
 
 function whatsapp(product){
 
-const message =
-"Hello FurniLoop! I am interested in "
-+product+
+const message=
+"Hello FurniLoop! I am interested in "+
+product+
 ". Please provide more details.";
 
 window.open(
@@ -531,29 +1083,23 @@ encodeURIComponent(message),
 }
 
 
-function interested(product){
+function callNow(){
 
-alert(
-"Thank you ❤️\n\nYou are interested in "
-+product+
-".\n\nPlease contact FurniLoop by WhatsApp or Call."
-);
+location.href="tel:+916909988186";
 
 }
 
 
 function shareFurniLoop(){
 
-const link =
+const link=
 "https://dharpritam740-pixel.github.io/FurniLoop-/";
 
-const message =
+const message=
 "🪑 FurniLoop\n\n"+
-"Quality second-hand furniture at affordable prices.\n\n"+
+"Quality furniture at affordable prices.\n\n"+
 "Visit: "+link+
-"\n\n🎁 Referral Code: FURNI300\n"+
-"Get ₹300 benefit!\n\n"+
-"📞 6909988186";
+"\n\n🎁 Referral Code: FURNI300";
 
 if(navigator.share){
 
@@ -577,71 +1123,51 @@ encodeURIComponent(message),
 
 async function submitReview(){
 
-const name =
-document.getElementById(
-"reviewName"
-).value.trim();
+const name=
+document.getElementById("reviewName")
+.value.trim();
 
-const rating =
+const rating=
 Number(
-document.getElementById(
-"reviewRating"
-).value
+document.getElementById("reviewRating")
+.value
 );
 
-const review =
-document.getElementById(
-"reviewText"
-).value.trim();
-
+const review=
+document.getElementById("reviewText")
+.value.trim();
 
 if(!name || !review){
 
-alert(
-"Please enter your name and review."
-);
+alert("Please enter your name and review.");
 
 return;
 
 }
 
-
-const {error} =
+const {error}=
 await supabaseClient
 .from("reviews")
 .insert({
-
 name:name,
 rating:rating,
 review:review
-
 });
-
 
 if(error){
 
 console.error(error);
 
-alert(
-"Review submit হয়নি। আবার চেষ্টা করুন।"
-);
+alert("Review submit হয়নি। আবার চেষ্টা করুন।");
 
 return;
 
 }
 
+alert("Thank you for your review! ⭐");
 
-alert(
-"Thank you for your review! ⭐"
-);
-
-document.getElementById(
-"reviewName"
-).value="";
-
-document.getElementById(
-"reviewText"
-).value="";
+document.getElementById("reviewName").value="";
+document.getElementById("reviewText").value="";
 
 loadReviews();
 
@@ -650,15 +1176,11 @@ loadReviews();
 
 async function loadReviews(){
 
-const {data,error} =
+const {data,error}=
 await supabaseClient
 .from("reviews")
 .select("*")
-.order(
-"created_at",
-{ascending:false}
-);
-
+.order("created_at",{ascending:false});
 
 if(error){
 
@@ -667,23 +1189,19 @@ return;
 
 }
 
-
-const list =
-document.getElementById(
-"reviewList"
-);
+const list=
+document.getElementById("reviewList");
 
 list.innerHTML="";
 
-
 data.forEach(item=>{
 
-const div =
+const div=
 document.createElement("div");
 
 div.className="review";
 
-div.innerHTML = `
+div.innerHTML=`
 
 <b>${escapeHtml(item.name)}</b>
 
@@ -706,7 +1224,7 @@ list.appendChild(div);
 
 function escapeHtml(text){
 
-const div =
+const div=
 document.createElement("div");
 
 div.textContent=text;
