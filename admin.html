@@ -2,474 +2,454 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FurniLoop Admin</title>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-*{box-sizing:border-box}
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f4f6f4;
-color:#17201c
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f5f5f5;
+  color:#222;
 }
 header{
-background:linear-gradient(135deg,#123d32,#28634f);
-color:white;
-padding:24px 5%
+  background:#111;
+  color:white;
+  padding:18px;
+  font-size:22px;
+  font-weight:bold;
 }
-header h1{margin:0}
 .container{
-max-width:1100px;
-margin:25px auto;
-padding:0 15px
+  max-width:900px;
+  margin:auto;
+  padding:20px;
 }
-.stats{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:15px
+.card{
+  background:white;
+  padding:20px;
+  margin-bottom:20px;
+  border-radius:15px;
+  box-shadow:0 3px 15px #0001;
 }
-.stat{
-background:white;
-padding:20px;
-border-radius:16px;
-text-align:center;
-box-shadow:0 4px 15px #0001
+input,select,button{
+  width:100%;
+  padding:13px;
+  margin:7px 0;
+  box-sizing:border-box;
+  border-radius:8px;
+  border:1px solid #ddd;
+  font-size:15px;
 }
-.stat b{
-display:block;
-font-size:28px;
-color:#176b4e
+button{
+  background:#111;
+  color:white;
+  border:none;
+  cursor:pointer;
 }
-.box{
-background:white;
-padding:22px;
-border-radius:18px;
-margin-top:25px;
-box-shadow:0 4px 15px #0001
+button:hover{
+  opacity:.9;
 }
-input,select{
-width:100%;
-padding:12px;
-margin:6px 0;
-border:1px solid #ddd;
-border-radius:9px;
-font-size:15px
+.preview{
+  width:100%;
+  max-height:250px;
+  object-fit:cover;
+  border-radius:10px;
+  margin-top:10px;
+  display:none;
 }
-.add{
-width:100%;
-padding:13px;
-border:0;
-border-radius:10px;
-background:#123d32;
-color:white;
-font-weight:bold;
-font-size:16px;
-cursor:pointer
+.product{
+  border:1px solid #ddd;
+  padding:12px;
+  border-radius:10px;
+  margin-top:12px;
 }
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:15px
-}
-th,td{
-padding:11px;
-border-bottom:1px solid #eee;
-text-align:left
-}
-img{
-width:65px;
-height:50px;
-object-fit:cover;
-border-radius:8px
+.product img{
+  width:100%;
+  max-height:200px;
+  object-fit:cover;
+  border-radius:8px;
 }
 .delete{
-border:0;
-background:#ffe5e5;
-color:#c00;
-padding:8px;
-border-radius:7px;
-cursor:pointer
+  background:#d32f2f;
 }
-.profit{
-color:#16804f;
-font-weight:bold
+.stats{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
 }
-.loss{
-color:#c00;
-font-weight:bold
+.stat{
+  background:#fafafa;
+  padding:15px;
+  border-radius:10px;
+  text-align:center;
 }
-.note{
-background:#fff7df;
-padding:12px;
-border-radius:10px;
-font-size:14px
-}
-@media(max-width:700px){
-.stats{grid-template-columns:1fr 1fr}
-table{font-size:12px}
+.stat b{
+  display:block;
+  font-size:24px;
+  margin-top:5px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<h1>🪑 FurniLoop Admin</h1>
-<p>Second-Hand Furniture Business Dashboard</p>
-</header>
+<header>🪑 FurniLoop Admin</header>
 
 <div class="container">
 
+<div class="card">
+<h2>📊 Dashboard</h2>
+
 <div class="stats">
-
 <div class="stat">
-<b id="productCount">0</b>
 Products
+<b id="productCount">0</b>
 </div>
 
 <div class="stat">
-<b id="orderCount">0</b>
 Orders
+<b id="orderCount">0</b>
 </div>
 
 <div class="stat">
-<b id="visitorCount">0</b>
 Visitors
+<b id="visitorCount">0</b>
 </div>
 
 <div class="stat">
-<b id="totalProfit">₹0</b>
-Estimated Profit
+Profit
+<b>₹<span id="profitTotal">0</span></b>
+</div>
+</div>
 </div>
 
-</div>
 
-
-<div class="box">
+<div class="card">
 
 <h2>➕ Add Furniture</h2>
 
-<div class="note">
-🔒 Purchase Price শুধু Admin-এর জন্য।
-Customer এই দাম দেখতে পাবে না।
-</div>
-
-<input id="name"
-placeholder="Furniture Name">
+<input id="name" placeholder="Furniture name">
 
 <select id="category">
+<option value="">Select Category</option>
 <option>Sofa</option>
 <option>Bed</option>
 <option>Chair</option>
 <option>Table</option>
 <option>Almirah</option>
-<option>Dressing Table</option>
 <option>Other</option>
 </select>
 
-<input id="purchase"
-type="number"
-placeholder="Purchase Price ₹">
+<input id="purchase" type="number" placeholder="Purchase price ₹">
 
-<input id="selling"
-type="number"
-placeholder="Selling Price ₹">
+<input id="selling" type="number" placeholder="Selling price ₹">
 
-<input id="location"
-placeholder="Location">
+<input id="location" placeholder="Location">
 
 <select id="condition">
+<option value="">Condition</option>
 <option>Like New</option>
-<option>Excellent</option>
 <option>Good</option>
 <option>Used</option>
 </select>
 
-<input id="image"
-placeholder="Furniture Image URL">
+<label><b>Furniture Photo</b></label>
+<input id="imageFile" type="file" accept="image/*">
 
-<button class="add" onclick="addProduct()">
-➕ Add Furniture
-</button>
+<img id="preview" class="preview">
+
+<button onclick="addFurniture()">Add Furniture</button>
+
+<p id="message"></p>
 
 </div>
 
 
-<div class="box">
+<div class="card">
 
-<h2>🪑 My Furniture</h2>
+<h2>🪑 Furniture List</h2>
 
-<div style="overflow:auto">
+<div id="products"></div>
 
-<table>
+</div>
 
-<thead>
-<tr>
-<th>Photo</th>
-<th>Furniture</th>
-<th>Buy Cost</th>
-<th>Sell Price</th>
-<th>Profit</th>
-<th>Action</th>
-</tr>
-</thead>
 
-<tbody id="products"></tbody>
+<div class="card">
 
-</table>
+<h2>📦 Orders</h2>
+
+<div id="orders"></div>
 
 </div>
 
 </div>
 
-
-<div class="box">
-
-<h2>📦 Customer Orders</h2>
-
-<div style="overflow:auto">
-
-<table>
-
-<thead>
-<tr>
-<th>Customer</th>
-<th>Phone</th>
-<th>Address</th>
-<th>Payment</th>
-<th>Status</th>
-</tr>
-</thead>
-
-<tbody id="orders"></tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</div>
-
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-const SUPABASE_URL=
+const SUPABASE_URL =
 "https://xrtbizswrxbccyqmzetw.supabase.co";
 
-const SUPABASE_KEY=
+const SUPABASE_KEY =
 "sb_publishable_iQVUPQExXfCCm4NSxDZ-Dg_AOhTpVTw";
 
-const db=
-supabase.createClient(
+const db = supabase.createClient(
 SUPABASE_URL,
 SUPABASE_KEY
 );
 
 
-/* ADD PRODUCT */
+// IMAGE PREVIEW
 
-async function addProduct(){
+document.getElementById("imageFile")
+.addEventListener("change", function(){
 
-const name=
-document.getElementById("name").value.trim();
+const file = this.files[0];
 
-const category=
-document.getElementById("category").value;
+if(!file) return;
 
-const purchase=
-Number(document.getElementById("purchase").value);
+const preview = document.getElementById("preview");
 
-const selling=
-Number(document.getElementById("selling").value);
+preview.src = URL.createObjectURL(file);
 
-const location=
-document.getElementById("location").value.trim();
-
-const condition=
-document.getElementById("condition").value;
-
-const image=
-document.getElementById("image").value.trim();
-
-
-if(
-!name ||
-!purchase ||
-!selling ||
-!location ||
-!image
-){
-
-alert("Please fill all fields.");
-return;
-
-}
-
-
-if(selling<=purchase){
-
-if(!confirm(
-"Selling price is not higher than purchase price. Continue?"
-)) return;
-
-}
-
-
-const {error}=
-await db
-.from("products")
-.insert({
-
-name:name,
-category:category,
-purchase_price:purchase,
-selling_price:selling,
-location:location,
-condition:condition,
-image:image
+preview.style.display = "block";
 
 });
 
 
-if(error){
+// ADD FURNITURE
 
-alert("Error: "+error.message);
-console.log(error);
+async function addFurniture(){
+
+const name =
+document.getElementById("name").value.trim();
+
+const category =
+document.getElementById("category").value;
+
+const purchase =
+Number(document.getElementById("purchase").value);
+
+const selling =
+Number(document.getElementById("selling").value);
+
+const location =
+document.getElementById("location").value.trim();
+
+const condition =
+document.getElementById("condition").value;
+
+const file =
+document.getElementById("imageFile").files[0];
+
+const message =
+document.getElementById("message");
+
+
+if(!name || !category || !selling || !file){
+
+message.innerText =
+"⚠️ Name, category, selling price and photo required.";
+
 return;
 
 }
 
 
-alert("✅ Furniture added successfully!");
+message.innerText =
+"⏳ Photo uploading...";
 
+
+// SAFE FILE NAME
+
+const safeName =
+file.name.replace(/[^\w.-]/g,"-");
+
+const filePath =
+Date.now() + "-" + safeName;
+
+
+// UPLOAD IMAGE
+
+const {data:uploadData,error:uploadError}
+=
+await db.storage
+.from("furniture-images")
+.upload(filePath,file,{
+upsert:false
+});
+
+
+if(uploadError){
+
+console.error(uploadError);
+
+message.innerText =
+"❌ Image upload failed: " +
+uploadError.message;
+
+return;
+
+}
+
+
+// PUBLIC IMAGE URL
+
+const {data:urlData}
+=
+db.storage
+.from("furniture-images")
+.getPublicUrl(filePath);
+
+const imageUrl =
+urlData.publicUrl;
+
+
+// SAVE PRODUCT
+
+const {error}
+=
+await db
+.from("products")
+.insert([{
+
+name:name,
+
+category:category,
+
+purchase_price:purchase || 0,
+
+selling_price:selling,
+
+location:location,
+
+condition:condition,
+
+image:imageUrl
+
+}]);
+
+
+if(error){
+
+console.error(error);
+
+message.innerText =
+"❌ Product save failed: " +
+error.message;
+
+return;
+
+}
+
+
+message.innerText =
+"✅ Furniture added successfully!";
+
+
+// CLEAR FORM
 
 document.getElementById("name").value="";
+document.getElementById("category").value="";
 document.getElementById("purchase").value="";
 document.getElementById("selling").value="";
 document.getElementById("location").value="";
-document.getElementById("image").value="";
+document.getElementById("condition").value="";
+document.getElementById("imageFile").value="";
+
+document.getElementById("preview").style.display="none";
 
 
 loadProducts();
 
+loadStats();
+
 }
 
 
-/* LOAD PRODUCTS */
+// LOAD PRODUCTS
 
 async function loadProducts(){
 
-const {data,error}=
+const {data,error}
+=
 await db
 .from("products")
 .select("*")
-.order("created_at",{ascending:false});
+.order("id",{ascending:false});
 
 
 if(error){
 
 console.log(error);
+
 return;
 
 }
 
 
-document.getElementById("productCount")
-.innerText=data.length;
-
-
-const list=
+const box =
 document.getElementById("products");
 
-list.innerHTML="";
-
-
-let profit=0;
+box.innerHTML="";
 
 
 data.forEach(p=>{
 
-const buy=
-Number(p.purchase_price||0);
-
-const sell=
-Number(
-p.selling_price||
-p.price||
-0
-);
-
-const pProfit=
-sell-buy;
-
-profit+=pProfit;
+const profit =
+Number(p.selling_price || 0)
+-
+Number(p.purchase_price || 0);
 
 
-list.innerHTML+=`
+box.innerHTML += `
 
-<tr>
+<div class="product">
 
-<td>
-<img src="${p.image}">
-</td>
+${p.image ?
+`<img src="${p.image}">`
+:
+""}
 
-<td>
-<b>${escapeHtml(p.name)}</b><br>
-<small>${escapeHtml(p.category)}</small>
-</td>
+<h3>${p.name}</h3>
 
-<td>
-₹${buy.toLocaleString("en-IN")}
-</td>
+<p>Category: ${p.category}</p>
 
-<td>
-₹${sell.toLocaleString("en-IN")}
-</td>
+<p>Purchase: ₹${p.purchase_price || 0}</p>
 
-<td class="${
-pProfit>=0 ? "profit":"loss"
-}">
-₹${pProfit.toLocaleString("en-IN")}
-</td>
+<p>Selling: ₹${p.selling_price || 0}</p>
 
-<td>
+<p>Profit: ₹${profit}</p>
 
-<button
-class="delete"
+<p>Location: ${p.location || "-"}</p>
+
+<p>Condition: ${p.condition || "-"}</p>
+
+<button class="delete"
 onclick="deleteProduct(${p.id})">
-🗑️ Delete
+Delete
 </button>
 
-</td>
-
-</tr>
+</div>
 
 `;
 
 });
 
-
-document.getElementById("totalProfit")
-.innerText=
-"₹"+profit.toLocaleString("en-IN");
-
 }
 
 
-/* DELETE */
+// DELETE PRODUCT
 
 async function deleteProduct(id){
 
-if(!confirm(
-"এই furniture delete করবেন?"
-)) return;
+if(!confirm("Delete this furniture?")) return;
 
 
-const {error}=
+const {error}
+=
 await db
 .from("products")
 .delete()
@@ -479,6 +459,7 @@ await db
 if(error){
 
 alert(error.message);
+
 return;
 
 }
@@ -486,71 +467,57 @@ return;
 
 loadProducts();
 
+loadStats();
+
 }
 
 
-/* ORDERS */
+// LOAD ORDERS
 
 async function loadOrders(){
 
-const {data,error}=
+const {data,error}
+=
 await db
 .from("orders")
 .select("*")
-.order("created_at",{ascending:false});
+.order("id",{ascending:false});
 
 
 if(error){
 
 console.log(error);
+
 return;
 
 }
 
 
-document.getElementById("orderCount")
-.innerText=data.length;
-
-
-const list=
+const box =
 document.getElementById("orders");
 
-list.innerHTML="";
+box.innerHTML="";
 
 
 data.forEach(o=>{
 
-list.innerHTML+=`
+box.innerHTML += `
 
-<tr>
+<div class="product">
 
-<td>
-${escapeHtml(o.customer_name||"")}
-</td>
+<h3>Order #${o.id}</h3>
 
-<td>
-${escapeHtml(o.customer_phone||"")}
-</td>
+<p>Customer: ${o.customer_name}</p>
 
-<td>
-${escapeHtml(o.address||"")}
-</td>
+<p>Phone: ${o.customer_phone}</p>
 
-<td>
-${escapeHtml(
-o.payment_method||
-"Cash on Delivery"
-)}
-</td>
+<p>Address: ${o.address || "-"}</p>
 
-<td>
-${escapeHtml(
-o.status||
-"Pending"
-)}
-</td>
+<p>Payment: ${o.payment_method}</p>
 
-</tr>
+<p>Status: ${o.status}</p>
+
+</div>
 
 `;
 
@@ -559,49 +526,70 @@ o.status||
 }
 
 
-/* VISITORS */
+// DASHBOARD STATS
 
-async function loadVisitors(){
+async function loadStats(){
 
-const {count,error}=
+const products =
 await db
-.from("visitors")
-.select("*",{
-count:"exact",
-head:true
+.from("products")
+.select("purchase_price,selling_price");
+
+
+document.getElementById("productCount")
+.innerText =
+products.data?.length || 0;
+
+
+let totalProfit = 0;
+
+
+(products.data || []).forEach(p=>{
+
+totalProfit +=
+Number(p.selling_price || 0)
+-
+Number(p.purchase_price || 0);
+
 });
 
 
-if(!error){
+document.getElementById("profitTotal")
+.innerText =
+totalProfit;
 
-document.getElementById(
-"visitorCount"
-).innerText=count||0;
+
+const orders =
+await db
+.from("orders")
+.select("id");
+
+
+document.getElementById("orderCount")
+.innerText =
+orders.data?.length || 0;
+
+
+const visitors =
+await db
+.from("visitors")
+.select("id");
+
+
+document.getElementById("visitorCount")
+.innerText =
+visitors.data?.length || 0;
 
 }
 
-}
 
-
-/* SECURITY */
-
-function escapeHtml(text){
-
-const div=
-document.createElement("div");
-
-div.textContent=text;
-
-return div.innerHTML;
-
-}
-
-
-/* START */
+// START
 
 loadProducts();
+
 loadOrders();
-loadVisitors();
+
+loadStats();
 
 </script>
 
