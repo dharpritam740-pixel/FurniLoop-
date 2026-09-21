@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>FurniLoop Admin</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#f4f6f4;
+ color:#17201c
+}
+header{
+ background:#123d32;
+ color:white;
+ padding:20px;
+}
+header h1{margin:0}
+header p{opacity:.8}
+.container{
+ max-width:1100px;
+ margin:25px auto;
+ padding:0 15px
+}
+.grid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:15px
+}
+.stat{
+ background:white;
+ padding:20px;
+ border-radius:15px;
+ box-shadow:0 4px 15px #0001;
+ text-align:center
+}
+.stat b{
+ display:block;
+ font-size:28px;
+ color:#123d32
+}
+.box{
+ background:white;
+ padding:22px;
+ border-radius:18px;
+ margin-top:25px;
+ box-shadow:0 4px 15px #0001
+}
+input,select{
+ width:100%;
+ padding:12px;
+ margin:6px 0;
+ border:1px solid #ddd;
+ border-radius:9px
+}
+button{
+ border:0;
+ padding:11px 16px;
+ border-radius:9px;
+ cursor:pointer;
+ font-weight:bold
+}
+.add{
+ background:#123d32;
+ color:white;
+ width:100%
+}
+.delete{
+ background:#fee;
+ color:#c22
+}
+table{
+ width:100%;
+ border-collapse:collapse;
+ margin-top:15px
+}
+th,td{
+ padding:11px;
+ border-bottom:1px solid #eee;
+ text-align:left
+}
+img{
+ width:65px;
+ height:50px;
+ object-fit:cover;
+ border-radius:7px
+}
+@media(max-width:700px){
+ .grid{grid-template-columns:1fr 1fr}
+ table{font-size:12px}
+ .hideMobile{display:none}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container">
+<h1>🪑 FurniLoop Admin</h1>
+<p>Furniture Marketplace Control Panel</p>
+</div>
+</header>
+
+<div class="container">
+
+<div class="grid">
+
+<div class="stat">
+<b id="productsCount">0</b>
+Products
+</div>
+
+<div class="stat">
+<b id="ordersCount">0</b>
+Orders
+</div>
+
+<div class="stat">
+<b id="visitorsCount">0</b>
+Visitors
+</div>
+
+<div class="stat">
+<b id="viewsCount">0</b>
+Product Views
+</div>
+
+</div>
+
+
+<div class="box">
+
+<h2>➕ Add Furniture</h2>
+
+<input id="name" placeholder="Furniture name">
+
+<select id="category">
+<option>Sofa</option>
+<option>Bed</option>
+<option>Chair</option>
+<option>Table</option>
+<option>Almirah</option>
+</select>
+
+<input id="price"
+type="number"
+placeholder="Price ₹">
+
+<input id="location"
+placeholder="Location">
+
+<select id="condition">
+<option>Like New</option>
+<option>Good</option>
+<option>Used</option>
+</select>
+
+<input id="image"
+placeholder="Image URL">
+
+<button class="add" onclick="addProduct()">
+➕ Add Furniture
+</button>
+
+</div>
+
+
+<div class="box">
+
+<h2>🪑 Furniture List</h2>
+
+<div style="overflow:auto">
+
+<table>
+
+<thead>
+<tr>
+<th>Photo</th>
+<th>Name</th>
+<th>Price</th>
+<th>Category</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="productList"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<div class="box">
+
+<h2>📦 Orders</h2>
+
+<div style="overflow:auto">
+
+<table>
+
+<thead>
+<tr>
+<th>Customer</th>
+<th>Phone</th>
+<th>Address</th>
+<th>Payment</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody id="orderList"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL=
+"https://xrtbizswrxbccyqmzetw.supabase.co";
+
+const SUPABASE_KEY=
+"sb_publishable_iQVUPQExXfCCm4NSxDZ-Dg_AOhTpVTw";
+
+const supabaseClient=
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+
+/* ADD PRODUCT */
+
+async function addProduct(){
+
+const name=
+document.getElementById("name").value.trim();
+
+const category=
+document.getElementById("category").value;
+
+const price=
+Number(document.getElementById("price").value);
+
+const location=
+document.getElementById("location").value.trim();
+
+const condition=
+document.getElementById("condition").value;
+
+const image=
+document.getElementById("image").value.trim();
+
+
+if(!name||!price||!location||!image){
+
+alert("Please fill all fields.");
+
+return;
+
+}
+
+
+const {error}=
+await supabaseClient
+.from("products")
+.insert({
+
+name:name,
+category:category,
+price:price,
+location:location,
+condition:condition,
+image:image
+
+});
+
+
+if(error){
+
+alert("Product add হয়নি: "+error.message);
+
+console.log(error);
+
+return;
+
+}
+
+
+alert("✅ Furniture added successfully!");
+
+document
+.querySelectorAll("input")
+.forEach(x=>x.value="");
+
+loadProducts();
+
+}
+
+
+/* LOAD PRODUCTS */
+
+async function loadProducts(){
+
+const {data,error}=
+await supabaseClient
+.from("products")
+.select("*")
+.order("created_at",{ascending:false});
+
+
+if(error){
+
+console.log(error);
+return;
+
+}
+
+
+document.getElementById("productsCount")
+.innerText=data.length;
+
+
+const list=
+document.getElementById("productList");
+
+list.innerHTML="";
+
+
+data.forEach(p=>{
+
+list.innerHTML+=`
+
+<tr>
+
+<td>
+<img src="${p.image}">
+</td>
+
+<td>${escapeHtml(p.name)}</td>
+
+<td>₹${Number(p.price).toLocaleString("en-IN")}</td>
+
+<td>${escapeHtml(p.category)}</td>
+
+<td>
+
+<button class="delete"
+onclick="deleteProduct(${p.id})">
+🗑️ Delete
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+/* DELETE */
+
+async function deleteProduct(id){
+
+if(!confirm("Delete this furniture?"))return;
+
+
+const {error}=
+await supabaseClient
+.from("products")
+.delete()
+.eq("id",id);
+
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+
+loadProducts();
+
+}
+
+
+/* LOAD ORDERS */
+
+async function loadOrders(){
+
+const {data,error}=
+await supabaseClient
+.from("orders")
+.select("*")
+.order("created_at",{ascending:false});
+
+
+if(error){
+
+console.log(error);
+return;
+
+}
+
+
+document.getElementById("ordersCount")
+.innerText=data.length;
+
+
+const list=
+document.getElementById("orderList");
+
+list.innerHTML="";
+
+
+data.forEach(o=>{
+
+list.innerHTML+=`
+
+<tr>
+
+<td>${escapeHtml(o.customer_name||"")}</td>
+
+<td>${escapeHtml(o.customer_phone||"")}</td>
+
+<td>${escapeHtml(o.address||"")}</td>
+
+<td>${escapeHtml(o.payment_method||"")}</td>
+
+<td>${escapeHtml(o.status||"Pending")}</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+/* VISITORS */
+
+async function loadStats(){
+
+try{
+
+const visitors=
+await supabaseClient
+.from("visitors")
+.select("*",{count:"exact",head:true});
+
+const views=
+await supabaseClient
+.from("product_views")
+.select("*",{count:"exact",head:true});
+
+
+document.getElementById("visitorsCount")
+.innerText=
+visitors.count||0;
+
+document.getElementById("viewsCount")
+.innerText=
+views.count||0;
+
+}catch(e){
+
+console.log(e);
+
+}
+
+}
+
+
+/* ESCAPE */
+
+function escapeHtml(text){
+
+const div=document.createElement("div");
+
+div.textContent=text;
+
+return div.innerHTML;
+
+}
+
+
+/* START */
+
+loadProducts();
+loadOrders();
+loadStats();
+
+</script>
+
+</body>
+</html>
