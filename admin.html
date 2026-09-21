@@ -2,96 +2,112 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>FurniLoop Admin</title>
 
 <style>
 *{box-sizing:border-box}
 body{
- margin:0;
- font-family:Arial,sans-serif;
- background:#f4f6f4;
- color:#17201c
+margin:0;
+font-family:Arial,sans-serif;
+background:#f4f6f4;
+color:#17201c
 }
 header{
- background:#123d32;
- color:white;
- padding:20px;
+background:linear-gradient(135deg,#123d32,#28634f);
+color:white;
+padding:24px 5%
 }
 header h1{margin:0}
-header p{opacity:.8}
 .container{
- max-width:1100px;
- margin:25px auto;
- padding:0 15px
+max-width:1100px;
+margin:25px auto;
+padding:0 15px
 }
-.grid{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:15px
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px
 }
 .stat{
- background:white;
- padding:20px;
- border-radius:15px;
- box-shadow:0 4px 15px #0001;
- text-align:center
+background:white;
+padding:20px;
+border-radius:16px;
+text-align:center;
+box-shadow:0 4px 15px #0001
 }
 .stat b{
- display:block;
- font-size:28px;
- color:#123d32
+display:block;
+font-size:28px;
+color:#176b4e
 }
 .box{
- background:white;
- padding:22px;
- border-radius:18px;
- margin-top:25px;
- box-shadow:0 4px 15px #0001
+background:white;
+padding:22px;
+border-radius:18px;
+margin-top:25px;
+box-shadow:0 4px 15px #0001
 }
 input,select{
- width:100%;
- padding:12px;
- margin:6px 0;
- border:1px solid #ddd;
- border-radius:9px
-}
-button{
- border:0;
- padding:11px 16px;
- border-radius:9px;
- cursor:pointer;
- font-weight:bold
+width:100%;
+padding:12px;
+margin:6px 0;
+border:1px solid #ddd;
+border-radius:9px;
+font-size:15px
 }
 .add{
- background:#123d32;
- color:white;
- width:100%
-}
-.delete{
- background:#fee;
- color:#c22
+width:100%;
+padding:13px;
+border:0;
+border-radius:10px;
+background:#123d32;
+color:white;
+font-weight:bold;
+font-size:16px;
+cursor:pointer
 }
 table{
- width:100%;
- border-collapse:collapse;
- margin-top:15px
+width:100%;
+border-collapse:collapse;
+margin-top:15px
 }
 th,td{
- padding:11px;
- border-bottom:1px solid #eee;
- text-align:left
+padding:11px;
+border-bottom:1px solid #eee;
+text-align:left
 }
 img{
- width:65px;
- height:50px;
- object-fit:cover;
- border-radius:7px
+width:65px;
+height:50px;
+object-fit:cover;
+border-radius:8px
+}
+.delete{
+border:0;
+background:#ffe5e5;
+color:#c00;
+padding:8px;
+border-radius:7px;
+cursor:pointer
+}
+.profit{
+color:#16804f;
+font-weight:bold
+}
+.loss{
+color:#c00;
+font-weight:bold
+}
+.note{
+background:#fff7df;
+padding:12px;
+border-radius:10px;
+font-size:14px
 }
 @media(max-width:700px){
- .grid{grid-template-columns:1fr 1fr}
- table{font-size:12px}
- .hideMobile{display:none}
+.stats{grid-template-columns:1fr 1fr}
+table{font-size:12px}
 }
 </style>
 </head>
@@ -99,34 +115,32 @@ img{
 <body>
 
 <header>
-<div class="container">
 <h1>🪑 FurniLoop Admin</h1>
-<p>Furniture Marketplace Control Panel</p>
-</div>
+<p>Second-Hand Furniture Business Dashboard</p>
 </header>
 
 <div class="container">
 
-<div class="grid">
+<div class="stats">
 
 <div class="stat">
-<b id="productsCount">0</b>
+<b id="productCount">0</b>
 Products
 </div>
 
 <div class="stat">
-<b id="ordersCount">0</b>
+<b id="orderCount">0</b>
 Orders
 </div>
 
 <div class="stat">
-<b id="visitorsCount">0</b>
+<b id="visitorCount">0</b>
 Visitors
 </div>
 
 <div class="stat">
-<b id="viewsCount">0</b>
-Product Views
+<b id="totalProfit">₹0</b>
+Estimated Profit
 </div>
 
 </div>
@@ -136,7 +150,13 @@ Product Views
 
 <h2>➕ Add Furniture</h2>
 
-<input id="name" placeholder="Furniture name">
+<div class="note">
+🔒 Purchase Price শুধু Admin-এর জন্য।
+Customer এই দাম দেখতে পাবে না।
+</div>
+
+<input id="name"
+placeholder="Furniture Name">
 
 <select id="category">
 <option>Sofa</option>
@@ -144,23 +164,30 @@ Product Views
 <option>Chair</option>
 <option>Table</option>
 <option>Almirah</option>
+<option>Dressing Table</option>
+<option>Other</option>
 </select>
 
-<input id="price"
+<input id="purchase"
 type="number"
-placeholder="Price ₹">
+placeholder="Purchase Price ₹">
+
+<input id="selling"
+type="number"
+placeholder="Selling Price ₹">
 
 <input id="location"
 placeholder="Location">
 
 <select id="condition">
 <option>Like New</option>
+<option>Excellent</option>
 <option>Good</option>
 <option>Used</option>
 </select>
 
 <input id="image"
-placeholder="Image URL">
+placeholder="Furniture Image URL">
 
 <button class="add" onclick="addProduct()">
 ➕ Add Furniture
@@ -171,7 +198,7 @@ placeholder="Image URL">
 
 <div class="box">
 
-<h2>🪑 Furniture List</h2>
+<h2>🪑 My Furniture</h2>
 
 <div style="overflow:auto">
 
@@ -180,14 +207,15 @@ placeholder="Image URL">
 <thead>
 <tr>
 <th>Photo</th>
-<th>Name</th>
-<th>Price</th>
-<th>Category</th>
+<th>Furniture</th>
+<th>Buy Cost</th>
+<th>Sell Price</th>
+<th>Profit</th>
 <th>Action</th>
 </tr>
 </thead>
 
-<tbody id="productList"></tbody>
+<tbody id="products"></tbody>
 
 </table>
 
@@ -198,7 +226,7 @@ placeholder="Image URL">
 
 <div class="box">
 
-<h2>📦 Orders</h2>
+<h2>📦 Customer Orders</h2>
 
 <div style="overflow:auto">
 
@@ -214,7 +242,7 @@ placeholder="Image URL">
 </tr>
 </thead>
 
-<tbody id="orderList"></tbody>
+<tbody id="orders"></tbody>
 
 </table>
 
@@ -235,7 +263,7 @@ const SUPABASE_URL=
 const SUPABASE_KEY=
 "sb_publishable_iQVUPQExXfCCm4NSxDZ-Dg_AOhTpVTw";
 
-const supabaseClient=
+const db=
 supabase.createClient(
 SUPABASE_URL,
 SUPABASE_KEY
@@ -252,8 +280,11 @@ document.getElementById("name").value.trim();
 const category=
 document.getElementById("category").value;
 
-const price=
-Number(document.getElementById("price").value);
+const purchase=
+Number(document.getElementById("purchase").value);
+
+const selling=
+Number(document.getElementById("selling").value);
 
 const location=
 document.getElementById("location").value.trim();
@@ -265,23 +296,38 @@ const image=
 document.getElementById("image").value.trim();
 
 
-if(!name||!price||!location||!image){
+if(
+!name ||
+!purchase ||
+!selling ||
+!location ||
+!image
+){
 
 alert("Please fill all fields.");
-
 return;
 
 }
 
 
+if(selling<=purchase){
+
+if(!confirm(
+"Selling price is not higher than purchase price. Continue?"
+)) return;
+
+}
+
+
 const {error}=
-await supabaseClient
+await db
 .from("products")
 .insert({
 
 name:name,
 category:category,
-price:price,
+purchase_price:purchase,
+selling_price:selling,
 location:location,
 condition:condition,
 image:image
@@ -291,10 +337,8 @@ image:image
 
 if(error){
 
-alert("Product add হয়নি: "+error.message);
-
+alert("Error: "+error.message);
 console.log(error);
-
 return;
 
 }
@@ -302,9 +346,13 @@ return;
 
 alert("✅ Furniture added successfully!");
 
-document
-.querySelectorAll("input")
-.forEach(x=>x.value="");
+
+document.getElementById("name").value="";
+document.getElementById("purchase").value="";
+document.getElementById("selling").value="";
+document.getElementById("location").value="";
+document.getElementById("image").value="";
+
 
 loadProducts();
 
@@ -316,7 +364,7 @@ loadProducts();
 async function loadProducts(){
 
 const {data,error}=
-await supabaseClient
+await db
 .from("products")
 .select("*")
 .order("created_at",{ascending:false});
@@ -330,17 +378,36 @@ return;
 }
 
 
-document.getElementById("productsCount")
+document.getElementById("productCount")
 .innerText=data.length;
 
 
 const list=
-document.getElementById("productList");
+document.getElementById("products");
 
 list.innerHTML="";
 
 
+let profit=0;
+
+
 data.forEach(p=>{
+
+const buy=
+Number(p.purchase_price||0);
+
+const sell=
+Number(
+p.selling_price||
+p.price||
+0
+);
+
+const pProfit=
+sell-buy;
+
+profit+=pProfit;
+
 
 list.innerHTML+=`
 
@@ -350,15 +417,29 @@ list.innerHTML+=`
 <img src="${p.image}">
 </td>
 
-<td>${escapeHtml(p.name)}</td>
+<td>
+<b>${escapeHtml(p.name)}</b><br>
+<small>${escapeHtml(p.category)}</small>
+</td>
 
-<td>₹${Number(p.price).toLocaleString("en-IN")}</td>
+<td>
+₹${buy.toLocaleString("en-IN")}
+</td>
 
-<td>${escapeHtml(p.category)}</td>
+<td>
+₹${sell.toLocaleString("en-IN")}
+</td>
+
+<td class="${
+pProfit>=0 ? "profit":"loss"
+}">
+₹${pProfit.toLocaleString("en-IN")}
+</td>
 
 <td>
 
-<button class="delete"
+<button
+class="delete"
 onclick="deleteProduct(${p.id})">
 🗑️ Delete
 </button>
@@ -371,6 +452,11 @@ onclick="deleteProduct(${p.id})">
 
 });
 
+
+document.getElementById("totalProfit")
+.innerText=
+"₹"+profit.toLocaleString("en-IN");
+
 }
 
 
@@ -378,11 +464,13 @@ onclick="deleteProduct(${p.id})">
 
 async function deleteProduct(id){
 
-if(!confirm("Delete this furniture?"))return;
+if(!confirm(
+"এই furniture delete করবেন?"
+)) return;
 
 
 const {error}=
-await supabaseClient
+await db
 .from("products")
 .delete()
 .eq("id",id);
@@ -401,12 +489,12 @@ loadProducts();
 }
 
 
-/* LOAD ORDERS */
+/* ORDERS */
 
 async function loadOrders(){
 
 const {data,error}=
-await supabaseClient
+await db
 .from("orders")
 .select("*")
 .order("created_at",{ascending:false});
@@ -420,12 +508,12 @@ return;
 }
 
 
-document.getElementById("ordersCount")
+document.getElementById("orderCount")
 .innerText=data.length;
 
 
 const list=
-document.getElementById("orderList");
+document.getElementById("orders");
 
 list.innerHTML="";
 
@@ -436,15 +524,31 @@ list.innerHTML+=`
 
 <tr>
 
-<td>${escapeHtml(o.customer_name||"")}</td>
+<td>
+${escapeHtml(o.customer_name||"")}
+</td>
 
-<td>${escapeHtml(o.customer_phone||"")}</td>
+<td>
+${escapeHtml(o.customer_phone||"")}
+</td>
 
-<td>${escapeHtml(o.address||"")}</td>
+<td>
+${escapeHtml(o.address||"")}
+</td>
 
-<td>${escapeHtml(o.payment_method||"")}</td>
+<td>
+${escapeHtml(
+o.payment_method||
+"Cash on Delivery"
+)}
+</td>
 
-<td>${escapeHtml(o.status||"Pending")}</td>
+<td>
+${escapeHtml(
+o.status||
+"Pending"
+)}
+</td>
 
 </tr>
 
@@ -457,43 +561,34 @@ list.innerHTML+=`
 
 /* VISITORS */
 
-async function loadStats(){
+async function loadVisitors(){
 
-try{
-
-const visitors=
-await supabaseClient
+const {count,error}=
+await db
 .from("visitors")
-.select("*",{count:"exact",head:true});
-
-const views=
-await supabaseClient
-.from("product_views")
-.select("*",{count:"exact",head:true});
+.select("*",{
+count:"exact",
+head:true
+});
 
 
-document.getElementById("visitorsCount")
-.innerText=
-visitors.count||0;
+if(!error){
 
-document.getElementById("viewsCount")
-.innerText=
-views.count||0;
-
-}catch(e){
-
-console.log(e);
+document.getElementById(
+"visitorCount"
+).innerText=count||0;
 
 }
 
 }
 
 
-/* ESCAPE */
+/* SECURITY */
 
 function escapeHtml(text){
 
-const div=document.createElement("div");
+const div=
+document.createElement("div");
 
 div.textContent=text;
 
@@ -506,7 +601,7 @@ return div.innerHTML;
 
 loadProducts();
 loadOrders();
-loadStats();
+loadVisitors();
 
 </script>
 
