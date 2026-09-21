@@ -48,7 +48,48 @@ header{background:#6b4226;color:white;text-align:center;padding:20px}
 </div>
 
 <div id="products" class="products"></div>
+<!-- Refer & Earn -->
+<div class="review-box">
+  <h2>🎁 Refer & Earn</h2>
 
+  <p>বন্ধুকে FurniLoop-এর কথা বলুন এবং furniture কিনলে ₹300 পান!</p>
+
+  <button
+    onclick="shareFurniLoop()"
+    style="background:#219653;color:white;width:100%;padding:12px;border:0;border-radius:8px;">
+    📲 Share FurniLoop
+  </button>
+</div>
+
+<script>
+function shareFurniLoop(){
+
+  const link = "https://dharpritam740-pixel.github.io/FurniLoop-/";
+
+  const message =
+  "🪑 FurniLoop – Second-Hand Furniture in Tripura\n\n" +
+  "Furniture কিনতে FurniLoop দেখুন:\n" +
+  link +
+  "\n\nআপনার বন্ধুকে আমার Referral Code দিন: FURNI300";
+
+  if(navigator.share){
+
+    navigator.share({
+      title:"FurniLoop",
+      text:message
+    });
+
+  }else{
+
+    window.open(
+      "https://wa.me/?text=" +
+      encodeURIComponent(message),
+      "_blank"
+    );
+
+  }
+}
+</script>
 <div class="review-box">
 <h2>⭐ Customer Reviews</h2>
 
