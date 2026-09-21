@@ -3,572 +3,677 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#111111">
 
 <title>FurniLoop | Premium Furniture</title>
 
-<meta name="theme-color" content="#111111">
-
 <style>
-*{
- box-sizing:border-box;
- margin:0;
- padding:0
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
-html{
- scroll-behavior:smooth
-}
+html{scroll-behavior:smooth}
 
 body{
- font-family:Arial,Helvetica,sans-serif;
- background:#f7f5f0;
- color:#171717
+font-family:Arial,Helvetica,sans-serif;
+background:#f6f4ef;
+color:#171717
 }
 
-button,input{
- font:inherit
-}
-
-button{
- cursor:pointer
-}
-
-/* HEADER */
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
 
 header{
- position:sticky;
- top:0;
- z-index:1000;
- background:rgba(15,15,15,.96);
- backdrop-filter:blur(15px);
- color:white;
- border-bottom:1px solid #ffffff18
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(15,15,15,.97);
+backdrop-filter:blur(15px);
+color:white;
+box-shadow:0 4px 25px #0004
 }
 
 .nav{
- max-width:1250px;
- margin:auto;
- padding:15px 20px;
- display:flex;
- align-items:center;
- justify-content:space-between
+max-width:1250px;
+margin:auto;
+padding:14px 20px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px
 }
 
 .logo{
- font-size:25px;
- font-weight:900;
- letter-spacing:-1px
+font-size:26px;
+font-weight:900
 }
 
-.logo span{
- color:#d6a84f
+.logo span{color:#d6a84f}
+
+.tag{
+font-size:9px;
+letter-spacing:2px;
+color:#aaa;
+margin-top:3px
 }
 
-.tagline{
- font-size:9px;
- color:#aaa;
- letter-spacing:2px;
- margin-top:3px
+.navActions{
+display:flex;
+gap:8px
 }
 
-.nav-right{
- display:flex;
- gap:8px
+.navBtn{
+border:1px solid #ffffff22;
+background:#ffffff12;
+color:white;
+padding:10px 14px;
+border-radius:25px
 }
 
-.nav-btn{
- background:#ffffff12;
- border:1px solid #ffffff20;
- color:white;
- padding:10px 14px;
- border-radius:25px
-}
-
-.nav-btn:hover{
- background:#d6a84f;
- color:#111
+.navBtn:hover{
+background:#d6a84f;
+color:#111
 }
 
 /* HERO */
 
 .hero{
- min-height:610px;
- display:flex;
- align-items:center;
- background:
- linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.3)),
- url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=90");
- background-size:cover;
- background-position:center
+min-height:590px;
+display:flex;
+align-items:center;
+background:
+linear-gradient(90deg,#000c,#0005),
+url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=90");
+background-size:cover;
+background-position:center
 }
 
-.hero-content{
- width:1250px;
- margin:auto;
- padding:70px 20px;
- color:white
+.heroInner{
+max-width:1250px;
+width:100%;
+margin:auto;
+padding:60px 20px;
+color:white
 }
 
-.luxury-label{
- color:#e0b45b;
- letter-spacing:4px;
- font-size:12px;
- font-weight:bold;
- margin-bottom:18px
+.label{
+color:#d8ad57;
+font-size:11px;
+font-weight:bold;
+letter-spacing:4px;
+margin-bottom:18px
 }
 
 .hero h1{
- max-width:750px;
- font-size:clamp(42px,7vw,82px);
- line-height:.98;
- margin-bottom:25px
+font-size:clamp(42px,7vw,80px);
+line-height:.98;
+max-width:800px;
+margin-bottom:22px
 }
 
-.hero h1 span{
- color:#dfb65c
-}
+.hero h1 span{color:#d8ad57}
 
 .hero p{
- max-width:580px;
- color:#ddd;
- line-height:1.7;
- font-size:17px;
- margin-bottom:30px
+max-width:590px;
+color:#ddd;
+font-size:17px;
+line-height:1.7;
+margin-bottom:28px
 }
 
-.hero-buttons{
- display:flex;
- gap:12px;
- flex-wrap:wrap
+.heroButtons{
+display:flex;
+gap:10px;
+flex-wrap:wrap
 }
 
-.gold-btn{
- border:0;
- background:#d5a64c;
- color:#111;
- padding:14px 23px;
- border-radius:5px;
- font-weight:bold
+.gold{
+background:#d6a84f;
+color:#111;
+border:0;
+padding:14px 22px;
+border-radius:5px;
+font-weight:bold
 }
 
-.dark-btn{
- border:1px solid #ffffff55;
- background:#ffffff12;
- color:white;
- padding:14px 23px;
- border-radius:5px
+.outline{
+background:#ffffff12;
+color:white;
+border:1px solid #ffffff55;
+padding:14px 22px;
+border-radius:5px;
+font-weight:bold
 }
 
 /* STATS */
 
 .stats{
- max-width:1100px;
- margin:-45px auto 30px;
- position:relative;
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:1px;
- background:#ddd;
- box-shadow:0 10px 35px #0002
+max-width:1100px;
+margin:-35px auto 35px;
+position:relative;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+box-shadow:0 12px 35px #0002
 }
 
 .stat{
- background:white;
- text-align:center;
- padding:25px 10px
+background:white;
+padding:22px 10px;
+text-align:center;
+border-right:1px solid #eee
 }
 
-.stat strong{
- display:block;
- font-size:24px;
- color:#111
+.stat b{
+font-size:24px;
+display:block
 }
 
-.stat small{
- color:#777
- }
+.stat span{
+font-size:12px;
+color:#777
+}
+
+/* SECTIONS */
+
+.section{
+max-width:1250px;
+margin:50px auto;
+padding:0 20px
+}
+
+.sectionHead{
+display:flex;
+justify-content:space-between;
+align-items:end;
+gap:15px;
+margin-bottom:20px
+}
+
+.sectionHead h2{
+font-size:30px
+}
+
+.sectionHead p{
+color:#777;
+margin-top:5px
+}
+
+/* SEARCH */
+
+.search{
+width:100%;
+padding:16px 20px;
+border:1px solid #ddd;
+background:white;
+border-radius:30px;
+outline:none;
+margin-bottom:25px
+}
+
+.search:focus{
+border-color:#c49743
+}
 
 /* CATEGORY */
 
-.section{
- max-width:1250px;
- margin:55px auto;
- padding:0 20px
-}
-
-.heading{
- display:flex;
- align-items:end;
- justify-content:space-between;
- margin-bottom:22px
-}
-
-.heading h2{
- font-size:30px
-}
-
-.heading p{
- color:#777;
- margin-top:5px
-}
-
 .categories{
- display:flex;
- gap:10px;
- overflow:auto;
- padding-bottom:5px
+display:flex;
+gap:9px;
+overflow:auto;
+padding-bottom:8px
 }
 
-.category{
- border:1px solid #ddd;
- background:white;
- padding:12px 20px;
- border-radius:30px;
- white-space:nowrap
+.cat{
+white-space:nowrap;
+border:1px solid #ddd;
+background:white;
+padding:11px 18px;
+border-radius:30px
 }
 
-.category.active,
-.category:hover{
- background:#111;
- color:white;
- border-color:#111
+.cat.active,
+.cat:hover{
+background:#111;
+color:white;
+border-color:#111
 }
 
 /* PRODUCTS */
 
 .products{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:18px
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px
 }
 
 .card{
- background:white;
- border-radius:4px;
- overflow:hidden;
- box-shadow:0 8px 30px #0000000c;
- transition:.3s;
- position:relative
+background:white;
+border-radius:6px;
+overflow:hidden;
+box-shadow:0 7px 30px #0000000d;
+transition:.3s
 }
 
 .card:hover{
- transform:translateY(-7px);
- box-shadow:0 18px 45px #0002
+transform:translateY(-6px);
+box-shadow:0 18px 45px #0002
 }
 
-.image{
- height:270px;
- position:relative;
- overflow:hidden;
- background:#eee
+.photo{
+height:270px;
+position:relative;
+background:#eee
 }
 
-.image img{
- width:100%;
- height:100%;
- object-fit:cover;
- transition:.5s
+.photo img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.5s
 }
 
-.card:hover .image img{
- transform:scale(1.06)
+.card:hover .photo img{
+transform:scale(1.06)
 }
 
 .badge{
- position:absolute;
- top:12px;
- left:12px;
- background:#111;
- color:white;
- padding:6px 10px;
- font-size:10px;
- letter-spacing:1px
+position:absolute;
+left:12px;
+top:12px;
+background:#111;
+color:white;
+font-size:10px;
+padding:6px 9px;
+letter-spacing:1px
 }
 
-.wish{
- position:absolute;
- right:12px;
- top:12px;
- width:38px;
- height:38px;
- border:0;
- border-radius:50%;
- background:white;
- box-shadow:0 4px 15px #0003
+.heart{
+position:absolute;
+right:12px;
+top:12px;
+width:40px;
+height:40px;
+border:0;
+border-radius:50%;
+background:white;
+box-shadow:0 3px 15px #0003;
+font-size:20px
 }
 
-.card-body{
- padding:17px
-}
-
-.card-body h3{
- margin:8px 0;
- font-size:18px
+.cardBody{
+padding:16px
 }
 
 .location{
- color:#888;
- font-size:12px;
- margin-bottom:8px
+font-size:12px;
+color:#888;
+margin-bottom:7px
+}
+
+.card h3{
+font-size:18px;
+margin-bottom:8px
 }
 
 .price{
- font-size:22px;
- font-weight:bold;
- color:#b27b18
+font-size:22px;
+font-weight:bold;
+color:#b27d20
 }
 
-.old-price{
- font-size:12px;
- color:#aaa;
- text-decoration:line-through;
- margin-left:5px
+.old{
+font-size:12px;
+color:#aaa;
+text-decoration:line-through;
+margin-left:5px
+}
+
+.condition{
+font-size:12px;
+color:#777;
+margin-top:7px
 }
 
 .actions{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:7px;
- margin-top:14px
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:7px;
+margin-top:13px
 }
 
 .btn{
- border:0;
- padding:10px;
- border-radius:4px;
- font-weight:bold
+border:0;
+padding:10px;
+border-radius:4px;
+font-weight:bold
 }
 
-.buy{
- background:#111;
- color:white
+.dark{
+background:#111;
+color:white
 }
 
-.cart{
- background:#eee;
- color:#111
+.light{
+background:#eee;
+color:#111
 }
 
-.whatsapp{
- background:#1fa463;
- color:white;
- grid-column:1/-1
+.green{
+background:#1ca35e;
+color:white;
+grid-column:1/-1
 }
 
-/* BANNER */
-
-.luxury-banner{
- max-width:1250px;
- margin:70px auto;
- min-height:300px;
- padding:50px;
- display:flex;
- align-items:center;
- justify-content:space-between;
- color:white;
- background:
- linear-gradient(90deg,#111c,#1118),
- url("https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1500&q=85");
- background-size:cover;
- background-position:center
+.empty{
+grid-column:1/-1;
+background:white;
+padding:50px;
+text-align:center;
+color:#777
 }
 
-.luxury-banner h2{
- font-size:40px;
- margin-bottom:12px
+/* LUXURY BANNER */
+
+.luxury{
+max-width:1250px;
+margin:70px auto;
+padding:55px 45px;
+min-height:300px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:25px;
+color:white;
+background:
+linear-gradient(90deg,#111e,#1118),
+url("https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=85");
+background-size:cover;
+background-position:center
 }
 
-.luxury-banner p{
- color:#ddd;
- max-width:500px;
- line-height:1.6
+.luxury h2{
+font-size:42px;
+margin-bottom:12px
+}
+
+.luxury p{
+color:#ddd;
+max-width:550px;
+line-height:1.6
+}
+
+/* REFERRAL */
+
+.referral{
+max-width:1250px;
+margin:60px auto;
+padding:40px;
+background:linear-gradient(135deg,#171717,#342a19);
+color:white;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:25px;
+border-radius:8px
+}
+
+.referral h2{
+font-size:32px;
+margin-bottom:8px
+}
+
+.referral p{
+color:#bbb;
+margin-bottom:15px
+}
+
+.refCode{
+display:inline-block;
+border:1px dashed #d6a84f;
+padding:10px 18px;
+color:#d6a84f;
+font-weight:bold;
+letter-spacing:2px
 }
 
 /* MODAL */
 
 .modal{
- display:none;
- position:fixed;
- inset:0;
- background:#000b;
- z-index:5000;
- padding:15px;
- overflow:auto
+display:none;
+position:fixed;
+inset:0;
+z-index:5000;
+background:#000b;
+padding:15px;
+overflow:auto
 }
 
-.modal-box{
- max-width:600px;
- background:white;
- margin:40px auto;
- padding:25px;
- border-radius:8px;
- position:relative
+.modalBox{
+max-width:620px;
+background:white;
+margin:30px auto;
+padding:25px;
+border-radius:8px;
+position:relative
 }
 
 .close{
- position:absolute;
- right:15px;
- top:15px;
- border:0;
- width:35px;
- height:35px;
- border-radius:50%
+position:absolute;
+right:12px;
+top:12px;
+width:35px;
+height:35px;
+border:0;
+border-radius:50%
 }
 
-.modal-image{
- width:100%;
- max-height:350px;
- object-fit:cover;
- border-radius:5px;
- margin-bottom:15px
+.modalImage{
+width:100%;
+height:330px;
+object-fit:cover;
+border-radius:5px;
+margin-bottom:15px
+}
+
+.modalPrice{
+font-size:28px;
+font-weight:bold;
+color:#b27d20;
+margin:10px 0
 }
 
 .input{
- width:100%;
- padding:13px;
- border:1px solid #ddd;
- border-radius:5px;
- margin:7px 0;
- outline:none
+width:100%;
+padding:13px;
+border:1px solid #ddd;
+border-radius:5px;
+margin:6px 0;
+outline:none
 }
 
-.modal-price{
- color:#b27b18;
- font-size:28px;
- font-weight:bold;
- margin:10px 0
+textarea.input{
+min-height:90px;
+resize:vertical
 }
 
 /* CART */
 
-.cart-item{
- display:flex;
- justify-content:space-between;
- padding:15px 0;
- border-bottom:1px solid #eee
+.cartItem{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+padding:14px 0;
+border-bottom:1px solid #eee
+}
+
+.remove{
+border:0;
+background:#fee;
+color:#b33;
+padding:7px;
+border-radius:5px
 }
 
 .total{
- display:flex;
- justify-content:space-between;
- font-size:21px;
- font-weight:bold;
- padding:20px 0
+display:flex;
+justify-content:space-between;
+font-size:21px;
+font-weight:bold;
+padding:20px 0
+}
+
+/* ADMIN */
+
+.adminBox{
+background:#fff;
+border:1px solid #e5e5e5;
+padding:20px;
+border-radius:8px
+}
+
+.adminTitle{
+color:#b27d20;
+font-weight:bold;
+letter-spacing:2px;
+font-size:11px;
+margin-bottom:8px
 }
 
 /* FOOTER */
 
 footer{
- background:#111;
- color:white;
- padding:60px 20px 30px;
- text-align:center
+background:#111;
+color:white;
+text-align:center;
+padding:55px 20px 25px;
+margin-top:70px
 }
 
 footer h2{
- color:#d6a84f;
- margin-bottom:10px
+color:#d6a84f;
+margin-bottom:10px
 }
 
 footer p{
- color:#aaa;
- margin:8px
+color:#aaa;
+margin:8px
 }
 
-.copyright{
- margin-top:25px;
- border-top:1px solid #ffffff15;
- padding-top:20px;
- font-size:12px;
- color:#777
+.copy{
+border-top:1px solid #ffffff18;
+margin-top:25px;
+padding-top:20px;
+font-size:12px;
+color:#666
 }
 
 /* TOAST */
 
 .toast{
- position:fixed;
- bottom:25px;
- left:50%;
- transform:translateX(-50%);
- background:#111;
- color:white;
- padding:13px 22px;
- border-radius:30px;
- z-index:9000;
- display:none
+position:fixed;
+bottom:25px;
+left:50%;
+transform:translateX(-50%);
+background:#111;
+color:white;
+padding:13px 22px;
+border-radius:30px;
+display:none;
+z-index:9000
 }
 
 /* MOBILE */
 
-@media(max-width:900px){
+@media(max-width:950px){
 
 .products{
- grid-template-columns:repeat(2,1fr)
+grid-template-columns:repeat(2,1fr)
 }
 
 .stats{
- grid-template-columns:repeat(2,1fr);
- margin-left:15px;
- margin-right:15px
+grid-template-columns:repeat(2,1fr);
+margin:15px
 }
 
 }
 
 @media(max-width:600px){
 
-.hero{
- min-height:540px
+.nav{
+padding:12px
 }
 
-.hero-content{
- padding:50px 18px
+.logo{
+font-size:21px
+}
+
+.tag{
+font-size:7px
+}
+
+.hero{
+min-height:540px
+}
+
+.heroInner{
+padding:45px 18px
 }
 
 .hero h1{
- font-size:48px
-}
-
-.products{
- grid-template-columns:repeat(2,1fr);
- gap:10px
-}
-
-.image{
- height:170px
-}
-
-.card-body{
- padding:11px
-}
-
-.card-body h3{
- font-size:14px
-}
-
-.price{
- font-size:18px
-}
-
-.actions{
- grid-template-columns:1fr
-}
-
-.whatsapp{
- grid-column:auto
-}
-
-.luxury-banner{
- margin:40px 15px;
- padding:30px;
- display:block
-}
-
-.luxury-banner h2{
- font-size:30px
+font-size:47px
 }
 
 .section{
- padding:0 12px
+padding:0 12px
+}
+
+.products{
+grid-template-columns:repeat(2,1fr);
+gap:10px
+}
+
+.photo{
+height:165px
+}
+
+.cardBody{
+padding:11px
+}
+
+.card h3{
+font-size:14px
+}
+
+.price{
+font-size:18px
+}
+
+.actions{
+grid-template-columns:1fr
+}
+
+.green{
+grid-column:auto
+}
+
+.luxury{
+margin:45px 15px;
+padding:30px;
+display:block
+}
+
+.luxury h2{
+font-size:31px
+}
+
+.referral{
+margin:45px 15px;
+padding:28px;
+display:block
+}
+
+.referral button{
+width:100%;
+margin-top:20px
 }
 
 }
@@ -583,16 +688,16 @@ footer p{
 
 <div>
 <div class="logo">Furni<span>Loop</span></div>
-<div class="tagline">PREMIUM FURNITURE MARKETPLACE</div>
+<div class="tag">PREMIUM FURNITURE MARKETPLACE</div>
 </div>
 
-<div class="nav-right">
+<div class="navActions">
 
-<button class="nav-btn" onclick="openCart()">
+<button class="navBtn" onclick="openCart()">
 🛒 <b id="cartCount">0</b>
 </button>
 
-<button class="nav-btn" onclick="openWishlist()">
+<button class="navBtn" onclick="openWishlist()">
 ❤️
 </button>
 
@@ -607,32 +712,30 @@ footer p{
 
 <section class="hero">
 
-<div class="hero-content">
+<div class="heroInner">
 
-<div class="luxury-label">
-PREMIUM • SECOND-HAND • SMART PRICES
+<div class="label">
+PREMIUM • SECOND-HAND • SMART PRICE
 </div>
 
 <h1>
-Furniture That Makes Your
-<span>Home Beautiful.</span>
+Beautiful Furniture.<br>
+<span>Better Prices.</span>
 </h1>
 
 <p>
-Discover carefully selected furniture at attractive prices.
-FurniLoop brings quality second-hand furniture to your doorstep.
+FurniLoop buys selected second-hand furniture and brings quality furniture to customers at attractive prices.
 </p>
 
-<div class="hero-buttons">
+<div class="heroButtons">
 
-<button class="gold-btn"
+<button class="gold"
 onclick="document.getElementById('collection').scrollIntoView()">
 EXPLORE COLLECTION
 </button>
 
-<button class="dark-btn"
-onclick="openCart()">
-MY CART 🛒
+<button class="outline" onclick="openCart()">
+🛒 MY CART
 </button>
 
 </div>
@@ -647,23 +750,23 @@ MY CART 🛒
 <div class="stats">
 
 <div class="stat">
-<strong id="visitorCount">0</strong>
-<small>Visitors</small>
+<b id="visitorCount">0</b>
+<span>Visitors</span>
 </div>
 
 <div class="stat">
-<strong id="productCount">0</strong>
-<small>Furniture</small>
+<b id="productCount">0</b>
+<span>Furniture</span>
 </div>
 
 <div class="stat">
-<strong id="viewCount">0</strong>
-<small>Product Views</small>
+<b id="viewCount">0</b>
+<span>Product Views</span>
 </div>
 
 <div class="stat">
-<strong>24/7</strong>
-<small>Order Support</small>
+<b>24/7</b>
+<span>Order Support</span>
 </div>
 
 </div>
@@ -673,44 +776,49 @@ MY CART 🛒
 
 <section class="section" id="collection">
 
-<div class="heading">
+<div class="sectionHead">
 
 <div>
-<h2>Our Collection</h2>
-<p>Selected furniture for your home</p>
+<h2>Premium Collection</h2>
+<p>Furniture selected by FurniLoop</p>
 </div>
 
 </div>
 
+<input
+id="search"
+class="search"
+placeholder="🔍 Search sofa, bed, chair..."
+oninput="renderProducts()">
 
 <div class="categories">
 
-<button class="category active"
+<button class="cat active"
 onclick="filterCategory('All',this)">
 All
 </button>
 
-<button class="category"
+<button class="cat"
 onclick="filterCategory('Sofa',this)">
 🛋️ Sofa
 </button>
 
-<button class="category"
+<button class="cat"
 onclick="filterCategory('Bed',this)">
 🛏️ Bed
 </button>
 
-<button class="category"
+<button class="cat"
 onclick="filterCategory('Table',this)">
 🪵 Table
 </button>
 
-<button class="category"
+<button class="cat"
 onclick="filterCategory('Chair',this)">
 🪑 Chair
 </button>
 
-<button class="category"
+<button class="cat"
 onclick="filterCategory('Almirah',this)">
 🚪 Almirah
 </button>
@@ -720,59 +828,91 @@ onclick="filterCategory('Almirah',this)">
 </section>
 
 
-<!-- SEARCH -->
-
-<section class="section">
-
-<input
-id="search"
-class="input"
-style="padding:16px;border-radius:30px"
-placeholder="🔍 Search furniture..."
-oninput="renderProducts()">
-
-</section>
-
-
 <!-- PRODUCTS -->
 
 <section class="section">
 
-<div class="products" id="products"></div>
+<div id="products" class="products"></div>
 
 </section>
 
 
-<!-- BANNER -->
+<!-- LUXURY -->
 
-<div class="luxury-banner">
+<div class="luxury">
 
 <div>
 
-<div class="luxury-label">
-FURNILOOP
-</div>
+<div class="label">FURNILOOP</div>
 
-<h2>
-Premium Look.<br>
-Smart Price.
-</h2>
+<h2>Premium Look.<br>Smart Price.</h2>
 
 <p>
-We buy selected old furniture and resell it after checking its condition.
+We purchase selected old furniture, check its condition and offer it to customers through FurniLoop.
 </p>
 
 </div>
 
-<button class="gold-btn"
-onclick="openCart()">
+<button class="gold" onclick="openCart()">
 VIEW CART
 </button>
 
 </div>
 
 
-<!-- FOOTER -->
+<!-- REFERRAL -->
+
+<section class="referral">
+
+<div>
+
+<div class="label">FURNILOOP REWARDS</div>
+
+<h2>🎁 Refer & Earn</h2>
+
+<p>
+Share FurniLoop with your friends.
+</p>
+
+<div class="refCode">
+FURNI300
+</div>
+
+</div>
+
+<button class="gold" onclick="shareFurniLoop()">
+📲 SHARE FURNILOOP
+</button>
+
+</section>
+
+
+<!-- ADMIN -->
+
+<section class="section">
+
+<div class="adminBox">
+
+<div class="adminTitle">
+OWNER / ADMIN
+</div>
+
+<h2>➕ Add Your Furniture</h2>
+
+<p style="color:#777;margin:8px 0 15px">
+Only use this section when you want to add furniture that you personally purchased.
+</p>
+
+<button class="btn dark"
+style="width:100%"
+onclick="openAdmin()">
+🔐 ADMIN PANEL
+</button>
+
+</div>
+
+</section>
+
 
 <footer>
 
@@ -784,18 +924,18 @@ VIEW CART
 
 <p>📞 6909988186</p>
 
-<div class="copyright">
+<div class="copy">
 © 2026 FurniLoop. All Rights Reserved.
 </div>
 
 </footer>
 
 
-<!-- DETAILS -->
+<!-- DETAILS MODAL -->
 
 <div class="modal" id="detailsModal">
 
-<div class="modal-box">
+<div class="modalBox">
 
 <button class="close"
 onclick="closeModal('detailsModal')">
@@ -813,7 +953,7 @@ onclick="closeModal('detailsModal')">
 
 <div class="modal" id="cartModal">
 
-<div class="modal-box">
+<div class="modalBox">
 
 <button class="close"
 onclick="closeModal('cartModal')">
@@ -825,19 +965,14 @@ onclick="closeModal('cartModal')">
 <div id="cartList"></div>
 
 <div class="total">
-
 <span>Total</span>
-<span id="total">₹0</span>
-
+<span id="cartTotal">₹0</span>
 </div>
 
-<button
-class="btn buy"
+<button class="btn dark"
 style="width:100%"
 onclick="checkout()">
-
-⚡ ORDER NOW
-
+⚡ CHECKOUT
 </button>
 
 </div>
@@ -849,14 +984,14 @@ onclick="checkout()">
 
 <div class="modal" id="wishlistModal">
 
-<div class="modal-box">
+<div class="modalBox">
 
 <button class="close"
 onclick="closeModal('wishlistModal')">
 ✕
 </button>
 
-<h2>❤️ Wishlist</h2>
+<h2>❤️ My Wishlist</h2>
 
 <div id="wishlistList"></div>
 
@@ -869,39 +1004,137 @@ onclick="closeModal('wishlistModal')">
 
 <div class="modal" id="orderModal">
 
-<div class="modal-box">
+<div class="modalBox">
 
 <button class="close"
 onclick="closeModal('orderModal')">
 ✕
 </button>
 
-<h2>📦 Complete Order</h2>
+<h2>📦 Complete Your Order</h2>
 
-<div id="orderProduct"></div>
+<div id="orderProduct"
+style="margin:15px 0">
+</div>
 
 <input
-id="name"
+id="buyerName"
 class="input"
-placeholder="Your Name">
+placeholder="Full Name">
 
 <input
-id="phone"
+id="buyerPhone"
 class="input"
 placeholder="Mobile Number">
 
-<input
-id="address"
+<textarea
+id="buyerAddress"
 class="input"
-placeholder="Delivery Address">
+placeholder="Complete Delivery Address">
+</textarea>
 
 <button
-class="btn whatsapp"
+class="btn green"
+style="width:100%;padding:14px"
 onclick="sendOrder()">
-
 📱 ORDER ON WHATSAPP
-
 </button>
+
+</div>
+
+</div>
+
+
+<!-- ADMIN LOGIN -->
+
+<div class="modal" id="adminModal">
+
+<div class="modalBox">
+
+<button class="close"
+onclick="closeModal('adminModal')">
+✕
+</button>
+
+<h2>🔐 Owner Admin</h2>
+
+<p style="color:#777;margin:8px 0 15px">
+Enter your owner PIN.
+</p>
+
+<input
+id="adminPin"
+class="input"
+type="password"
+placeholder="Admin PIN">
+
+<button
+class="btn dark"
+style="width:100%;margin-top:8px"
+onclick="adminLogin()">
+LOGIN
+</button>
+
+<div id="adminPanel"
+style="display:none;margin-top:20px">
+
+<hr style="margin:20px 0">
+
+<h3>➕ Add Furniture</h3>
+
+<input
+id="newName"
+class="input"
+placeholder="Furniture name">
+
+<select id="newCategory" class="input">
+
+<option>Sofa</option>
+<option>Bed</option>
+<option>Table</option>
+<option>Chair</option>
+<option>Almirah</option>
+
+</select>
+
+<input
+id="newPrice"
+class="input"
+type="number"
+placeholder="Selling price ₹">
+
+<input
+id="newOldPrice"
+class="input"
+type="number"
+placeholder="Old price ₹">
+
+<input
+id="newLocation"
+class="input"
+placeholder="Location">
+
+<select id="newCondition" class="input">
+
+<option>Like New</option>
+<option>Good</option>
+<option>Used</option>
+
+</select>
+
+<input
+id="newImage"
+class="input"
+placeholder="Furniture image URL">
+
+<button
+class="btn dark"
+style="width:100%;margin-top:8px"
+onclick="addFurniture()">
+🚀 ADD FURNITURE
+</button>
+
+</div>
 
 </div>
 
@@ -913,20 +1146,26 @@ onclick="sendOrder()">
 
 <script>
 
-const WHATSAPP="916909988186";
+/* =========================
+   SETTINGS
+========================= */
 
-let category="All";
+const BUSINESS_PHONE="916909988186";
 
-let cart=
-JSON.parse(localStorage.getItem("furniloop_cart")||"[]");
+/*
+Change this PIN.
+Example:
+1234
+*/
 
-let wishlist=
-JSON.parse(localStorage.getItem("furniloop_wishlist")||"[]");
+const ADMIN_PIN="1234";
 
 
-/* PRODUCTS */
+/* =========================
+   DATA
+========================= */
 
-const products=[
+let products=[
 
 {
 id:1,
@@ -1019,14 +1258,25 @@ image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&
 ];
 
 
-/* MONEY */
+let category="All";
+
+let cart=
+JSON.parse(localStorage.getItem("furniloop_cart")||"[]");
+
+let wishlist=
+JSON.parse(localStorage.getItem("furniloop_wishlist")||"[]");
+
+
+/* =========================
+   HELPERS
+========================= */
 
 function money(n){
- return "₹"+Number(n).toLocaleString("en-IN");
+
+return "₹"+Number(n).toLocaleString("en-IN");
+
 }
 
-
-/* TOAST */
 
 function toast(text){
 
@@ -1037,31 +1287,100 @@ t.innerText=text;
 t.style.display="block";
 
 setTimeout(()=>{
- t.style.display="none";
+t.style.display="none";
 },2200);
 
 }
 
 
-/* RENDER */
+function save(){
+
+localStorage.setItem(
+"furniloop_cart",
+JSON.stringify(cart)
+);
+
+localStorage.setItem(
+"furniloop_wishlist",
+JSON.stringify(wishlist)
+);
+
+localStorage.setItem(
+"furniloop_products",
+JSON.stringify(products)
+);
+
+}
+
+
+/* =========================
+   LOAD PRODUCTS
+========================= */
+
+const savedProducts=
+JSON.parse(
+localStorage.getItem("furniloop_products")||"[]"
+);
+
+if(savedProducts.length){
+
+savedProducts.forEach(p=>{
+
+if(!products.some(x=>x.id===p.id)){
+
+products.push(p);
+
+}
+
+});
+
+}
+
+
+/* =========================
+   RENDER
+========================= */
 
 function renderProducts(){
+
+const box=document.getElementById("products");
 
 const search=
 document.getElementById("search").value.toLowerCase();
 
-const box=
-document.getElementById("products");
-
 box.innerHTML="";
 
 const list=products.filter(p=>
+
 (category==="All"||p.category===category)&&
+
 p.name.toLowerCase().includes(search)
+
 );
 
-document.getElementById("productCount").innerText=
-products.length;
+
+document.getElementById("productCount")
+.innerText=products.length;
+
+
+if(!list.length){
+
+box.innerHTML=`
+
+<div class="empty">
+
+<h2>😔 No Furniture Found</h2>
+
+<p>Try another search.</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
 
 list.forEach(p=>{
 
@@ -1071,49 +1390,75 @@ box.innerHTML+=`
 
 <div class="card">
 
-<div class="image">
+<div class="photo">
 
-<img src="${p.image}">
+<img
+src="${p.image}"
+alt="${p.name}">
 
 <span class="badge">
 ${p.category}
 </span>
 
-<button class="wish"
+<button
+class="heart"
 onclick="toggleWishlist(${p.id})">
+
 ${liked?"❤️":"♡"}
+
 </button>
 
 </div>
 
-<div class="card-body">
+
+<div class="cardBody">
 
 <div class="location">
 📍 ${p.location}
 </div>
 
-<h3>${p.name}</h3>
+<h3>
+${p.name}
+</h3>
 
 <div class="price">
+
 ${money(p.price)}
-<span class="old-price">
-${money(p.old)}
+
+<span class="old">
+${money(p.old||p.price)}
+
 </span>
+
 </div>
+
+<div class="condition">
+✨ ${p.condition}
+</div>
+
 
 <div class="actions">
 
-<button class="btn buy"
+<button
+class="btn dark"
 onclick="viewProduct(${p.id})">
-VIEW
+👁️ VIEW
 </button>
 
-<button class="btn cart"
+<button
+class="btn light"
 onclick="addCart(${p.id})">
 🛒 CART
 </button>
 
-<button class="btn whatsapp"
+<button
+class="btn dark"
+onclick="buyNow(${p.id})">
+⚡ BUY NOW
+</button>
+
+<button
+class="btn green"
 onclick="whatsapp('${p.name}')">
 💬 WHATSAPP
 </button>
@@ -1131,23 +1476,27 @@ onclick="whatsapp('${p.name}')">
 }
 
 
-/* FILTER */
+/* =========================
+   CATEGORY
+========================= */
 
 function filterCategory(c,btn){
 
 category=c;
 
-document.querySelectorAll(".category")
+document.querySelectorAll(".cat")
 .forEach(x=>x.classList.remove("active"));
 
-btn.classList.add("active");
+if(btn)btn.classList.add("active");
 
 renderProducts();
 
 }
 
 
-/* DETAILS */
+/* =========================
+   DETAILS
+========================= */
 
 function viewProduct(id){
 
@@ -1158,24 +1507,26 @@ if(!p)return;
 document.getElementById("details").innerHTML=`
 
 <img
-class="modal-image"
+class="modalImage"
 src="${p.image}">
 
 <h2>${p.name}</h2>
 
-<div class="modal-price">
+<div class="modalPrice">
 ${money(p.price)}
 </div>
 
-<p>
+<p style="line-height:1.8;color:#666">
+
 📍 ${p.location}<br>
 ✨ Condition: ${p.condition}<br>
 🚚 Delivery Available
+
 </p>
 
 <button
-class="btn buy"
-style="width:100%;margin-top:15px"
+class="btn dark"
+style="width:100%;margin-top:15px;padding:14px"
 onclick="buyNow(${p.id})">
 
 ⚡ BUY NOW
@@ -1183,11 +1534,20 @@ onclick="buyNow(${p.id})">
 </button>
 
 <button
-class="btn cart"
-style="width:100%;margin-top:8px"
+class="btn light"
+style="width:100%;margin-top:8px;padding:14px"
 onclick="addCart(${p.id})">
 
 🛒 ADD TO CART
+
+</button>
+
+<button
+class="btn green"
+style="width:100%;margin-top:8px;padding:14px"
+onclick="whatsapp('${p.name}')">
+
+💬 ASK ON WHATSAPP
 
 </button>
 
@@ -1196,14 +1556,25 @@ onclick="addCart(${p.id})">
 document.getElementById("detailsModal")
 .style.display="block";
 
+let views=
+Number(localStorage.getItem("furniloop_views")||"0");
+
+views++;
+
+localStorage.setItem(
+"furniloop_views",
+views
+);
+
 document.getElementById("viewCount")
-.innerText=
-Number(document.getElementById("viewCount").innerText)+1;
+.innerText=views;
 
 }
 
 
-/* CART */
+/* =========================
+   CART
+========================= */
 
 function addCart(id){
 
@@ -1211,10 +1582,7 @@ if(!cart.includes(id)){
 
 cart.push(id);
 
-localStorage.setItem(
-"furniloop_cart",
-JSON.stringify(cart)
-);
+save();
 
 toast("🛒 Added to cart");
 
@@ -1242,25 +1610,35 @@ function openCart(){
 let html="";
 let total=0;
 
+
 cart.forEach(id=>{
 
 const p=products.find(x=>x.id===id);
 
 if(!p)return;
 
-total+=p.price;
+total+=Number(p.price);
 
 html+=`
 
-<div class="cart-item">
+<div class="cartItem">
 
 <div>
+
 <b>${p.name}</b><br>
-<small>${money(p.price)}</small>
+
+<small>
+${money(p.price)}
+</small>
+
 </div>
 
-<button onclick="removeCart(${p.id})">
+<button
+class="remove"
+onclick="removeCart(${p.id})">
+
 Remove
+
 </button>
 
 </div>
@@ -1269,15 +1647,29 @@ Remove
 
 });
 
+
 if(!cart.length){
 
-html="<p style='padding:30px;text-align:center'>🛒 Cart is empty</p>";
+html=`
+
+<div style="text-align:center;padding:35px;color:#777">
+
+<h3>🛒 Cart is Empty</h3>
+
+<p>Add some furniture first.</p>
+
+</div>
+
+`;
 
 }
 
-document.getElementById("cartList").innerHTML=html;
 
-document.getElementById("total").innerText=money(total);
+document.getElementById("cartList")
+.innerHTML=html;
+
+document.getElementById("cartTotal")
+.innerText=money(total);
 
 document.getElementById("cartModal")
 .style.display="block";
@@ -1289,10 +1681,7 @@ function removeCart(id){
 
 cart=cart.filter(x=>x!==id);
 
-localStorage.setItem(
-"furniloop_cart",
-JSON.stringify(cart)
-);
+save();
 
 updateCart();
 
@@ -1301,7 +1690,9 @@ openCart();
 }
 
 
-/* BUY */
+/* =========================
+   BUY
+========================= */
 
 function buyNow(id){
 
@@ -1309,14 +1700,19 @@ const p=products.find(x=>x.id===id);
 
 if(!p)return;
 
-document.getElementById("orderProduct").innerHTML=`
+document.getElementById("orderProduct")
+.innerHTML=`
 
 <div style="background:#f5f5f5;padding:15px;margin:15px 0">
 
-<b>${p.name}</b><br>
+<b>${p.name}</b>
 
-<span style="color:#b27b18;font-size:22px">
+<br><br>
+
+<span style="color:#b27d20;font-size:23px;font-weight:bold">
+
 ${money(p.price)}
+
 </span>
 
 </div>
@@ -1324,7 +1720,7 @@ ${money(p.price)}
 `;
 
 document.getElementById("orderModal")
-.dataset.product=id;
+.dataset.mode=id;
 
 closeModal("detailsModal");
 
@@ -1334,28 +1730,36 @@ document.getElementById("orderModal")
 }
 
 
-/* CHECKOUT */
+/* =========================
+   CHECKOUT
+========================= */
 
 function checkout(){
 
 if(!cart.length){
 
-toast("Cart is empty");
+toast("🛒 Cart is empty");
 
 return;
 
 }
 
-document.getElementById("orderProduct").innerHTML=
+document.getElementById("orderProduct")
+.innerHTML=
 
-"<b>🛒 Cart Order</b><br><br>"+
+"<b>🛒 Your Cart</b><br><br>"+
+
 cart.map(id=>{
+
 const p=products.find(x=>x.id===id);
-return p?p.name+" — "+money(p.price)+"<br>":"";
+
+return p?
+p.name+" — "+money(p.price)+"<br>":"";
+
 }).join("");
 
 document.getElementById("orderModal")
-.dataset.product="cart";
+.dataset.mode="cart";
 
 closeModal("cartModal");
 
@@ -1365,33 +1769,40 @@ document.getElementById("orderModal")
 }
 
 
-/* ORDER */
+/* =========================
+   ORDER
+========================= */
 
 function sendOrder(){
 
 const name=
-document.getElementById("name").value.trim();
+document.getElementById("buyerName")
+.value.trim();
 
 const phone=
-document.getElementById("phone").value.trim();
+document.getElementById("buyerPhone")
+.value.trim();
 
 const address=
-document.getElementById("address").value.trim();
+document.getElementById("buyerAddress")
+.value.trim();
 
 if(!name||!phone||!address){
 
-toast("Please fill all details");
+toast("⚠️ Please fill all details");
 
 return;
 
 }
 
+
 const mode=
 document.getElementById("orderModal")
-.dataset.product;
+.dataset.mode;
 
 let text="";
 let total=0;
+
 
 if(mode==="cart"){
 
@@ -1401,12 +1812,13 @@ const p=products.find(x=>x.id===id);
 
 if(p){
 
-text+=p.name+
+text+=
+p.name+
 " - "+
 money(p.price)+
 "\n";
 
-total+=p.price;
+total+=Number(p.price);
 
 }
 
@@ -1418,39 +1830,56 @@ const p=products.find(x=>x.id==mode);
 
 if(p){
 
-text=p.name+
+text=
+p.name+
 " - "+
 money(p.price);
 
-total=p.price;
+total=Number(p.price);
 
 }
 
 }
+
 
 const message=
-"🪑 *FurniLoop Order*\n\n"+
-"👤 Name: "+name+"\n"+
-"📱 Phone: "+phone+"\n"+
-"📍 Address: "+address+"\n\n"+
+
+"🪑 *FurniLoop New Order*\n\n"+
+
+"👤 Customer: "+
+name+"\n"+
+
+"📱 Phone: "+
+phone+"\n"+
+
+"📍 Address: "+
+address+"\n\n"+
+
 "🛋️ Furniture:\n"+
 text+"\n\n"+
-"💰 Total: "+money(total);
+
+"💰 Total: "+
+money(total);
+
 
 window.open(
-"https://wa.me/"+WHATSAPP+
-"?text="+encodeURIComponent(message),
+
+"https://wa.me/"+
+BUSINESS_PHONE+
+"?text="+
+encodeURIComponent(message),
+
 "_blank"
+
 );
 
-toast("Order sent to WhatsApp");
+
+toast("✅ Order sent to WhatsApp");
+
 
 cart=[];
 
-localStorage.setItem(
-"furniloop_cart",
-"[]"
-);
+save();
 
 updateCart();
 
@@ -1459,7 +1888,36 @@ closeModal("orderModal");
 }
 
 
-/* WISHLIST */
+/* =========================
+   WHATSAPP
+========================= */
+
+function whatsapp(product){
+
+const message=
+
+"Hello FurniLoop 👋\n\n"+
+
+"I am interested in:\n"+
+product+
+
+"\n\nPlease provide details.";
+
+window.open(
+
+"https://wa.me/"+
+BUSINESS_PHONE+
+"?text="+
+encodeURIComponent(message),
+
+"_blank"
+
+);
+
+
+/* =========================
+   WISHLIST
+========================= */
 
 function toggleWishlist(id){
 
@@ -1478,10 +1936,7 @@ toast("❤️ Added to wishlist");
 
 }
 
-localStorage.setItem(
-"furniloop_wishlist",
-JSON.stringify(wishlist)
-);
+save();
 
 renderProducts();
 
@@ -1496,22 +1951,46 @@ wishlist.forEach(id=>{
 
 const p=products.find(x=>x.id===id);
 
-if(p){
+if(!p)return;
 
 html+=`
 
-<div class="cart-item">
+<div class="cartItem">
 
 <div>
+
 <b>${p.name}</b><br>
+
+<small>
 ${money(p.price)}
+</small>
+
 </div>
 
 <button
-class="btn buy"
+class="btn dark"
 onclick="buyNow(${p.id})">
+
 BUY
+
 </button>
+
+</div>
+
+`;
+
+});
+
+
+if(!html){
+
+html=`
+
+<div style="text-align:center;padding:35px;color:#777">
+
+<h3>❤️ Wishlist Empty</h3>
+
+<p>Tap ❤️ on furniture you like.</p>
 
 </div>
 
@@ -1519,15 +1998,9 @@ BUY
 
 }
 
-});
 
-if(!html){
-
-html="<p style='padding:30px;text-align:center'>❤️ Wishlist empty</p>";
-
-}
-
-document.getElementById("wishlistList").innerHTML=html;
+document.getElementById("wishlistList")
+.innerHTML=html;
 
 document.getElementById("wishlistModal")
 .style.display="block";
@@ -1535,26 +2008,165 @@ document.getElementById("wishlistModal")
 }
 
 
-/* WHATSAPP */
+/* =========================
+   REFERRAL
+========================= */
 
-function whatsapp(product){
+function shareFurniLoop(){
 
-const message=
-"Hello FurniLoop 👋\n\n"+
-"I am interested in:\n"+
-product+
-"\n\nPlease provide details.";
+const link=
+"https://dharpritam740-pixel.github.io/FurniLoop-/";
+
+const text=
+
+"🪑 FurniLoop\n\n"+
+
+"Premium furniture at smart prices.\n\n"+
+
+"🎁 Referral Code: FURNI300\n\n"+
+
+"Visit: "+link;
+
+
+if(navigator.share){
+
+navigator.share({
+
+title:"FurniLoop",
+
+text:text
+
+});
+
+}else{
 
 window.open(
-"https://wa.me/"+WHATSAPP+
-"?text="+encodeURIComponent(message),
+
+"https://wa.me/?text="+
+encodeURIComponent(text),
+
 "_blank"
+
 );
 
 }
 
+}
 
-/* MODAL */
+
+/* =========================
+   ADMIN
+========================= */
+
+function openAdmin(){
+
+document.getElementById("adminModal")
+.style.display="block";
+
+}
+
+
+function adminLogin(){
+
+const pin=
+document.getElementById("adminPin")
+.value;
+
+if(pin!==ADMIN_PIN){
+
+toast("❌ Wrong Admin PIN");
+
+return;
+
+}
+
+document.getElementById("adminPanel")
+.style.display="block";
+
+toast("🔓 Admin unlocked");
+
+}
+
+
+function addFurniture(){
+
+const name=
+document.getElementById("newName")
+.value.trim();
+
+const category=
+document.getElementById("newCategory")
+.value;
+
+const price=
+Number(document.getElementById("newPrice").value);
+
+const old=
+Number(document.getElementById("newOldPrice").value)||price;
+
+const location=
+document.getElementById("newLocation")
+.value.trim();
+
+const condition=
+document.getElementById("newCondition")
+.value;
+
+const image=
+document.getElementById("newImage")
+.value.trim();
+
+
+if(!name||!price||!location||!image){
+
+toast("⚠️ Fill all furniture details");
+
+return;
+
+}
+
+
+const item={
+
+id:Date.now(),
+
+name:name,
+
+category:category,
+
+price:price,
+
+old:old,
+
+location:location,
+
+condition:condition,
+
+image:image
+
+};
+
+
+products.unshift(item);
+
+save();
+
+renderProducts();
+
+document.getElementById("newName").value="";
+document.getElementById("newPrice").value="";
+document.getElementById("newOldPrice").value="";
+document.getElementById("newLocation").value="";
+document.getElementById("newImage").value="";
+
+toast("🚀 Furniture added successfully");
+
+}
+
+
+/* =========================
+   MODALS
+========================= */
 
 function closeModal(id){
 
@@ -1564,37 +2176,50 @@ document.getElementById(id)
 }
 
 
-window.onclick=function(e){
+window.addEventListener("click",function(e){
 
 document.querySelectorAll(".modal")
 .forEach(m=>{
 
 if(e.target===m){
+
 m.style.display="none";
+
 }
 
 });
 
-}
+});
 
 
-/* VISITOR */
+/* =========================
+   VISITOR
+========================= */
 
-let visits=
-Number(localStorage.getItem("furniloop_visits")||0);
+let visitors=
+Number(localStorage.getItem("furniloop_visitors")||"0");
 
-visits++;
+visitors++;
 
 localStorage.setItem(
-"furniloop_visits",
-visits
+"furniloop_visitors",
+visitors
 );
 
 document.getElementById("visitorCount")
-.innerText=visits;
+.innerText=visitors;
 
 
-/* START */
+let views=
+Number(localStorage.getItem("furniloop_views")||"0");
+
+document.getElementById("viewCount")
+.innerText=views;
+
+
+/* =========================
+   START
+========================= */
 
 renderProducts();
 
